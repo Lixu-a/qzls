@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "房屋租售",
-  "usingComponents": {
-    "app-menu-a": "../../components/app-menu-a/app-menu-a",
-    "app-house-list": "../../components/app-house-list/app-house-list"
-  }
-}

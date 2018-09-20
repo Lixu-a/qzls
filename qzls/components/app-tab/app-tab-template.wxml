@@ -1,3 +1,0 @@
-<template name="appTab">
-    <app-tab value="{{value}}"></app-tab>
-</template>

@@ -1,3 +1,0 @@
-<template name="appSwiper">
-    <app-swiper value="{{value}}"></app-swiper>
-</template>

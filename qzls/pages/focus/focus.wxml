@@ -1,3 +1,0 @@
-<view wx:for="{{userObjects}}" wx:key="userUid">
-    <app-focus-agent value="{{ {agent: item} }}" bindcomponentevent="onComponentEvent"></app-focus-agent>
-</view>
