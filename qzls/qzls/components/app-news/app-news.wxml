@@ -7,6 +7,6 @@
         <block wx:for="{{list}}" wx:key="*this" >
             <swiper-item data-index="{{index}}" bindtap="onSwiperItemTap" class="app-news-swiper-item">{{item.title}}</swiper-item>
         </block>
-        <swiper-item data-index="{{index}}" bindtap="onSwiperItemTap" class="app-news-swiper-item">今日天气：阴转多云 23~27度</swiper-item>
+        <swiper-item data-index="{{index}}" bindtap="onSwiperItemTap" class="app-news-swiper-item">{{weatherData}}</swiper-item>
     </swiper>
 </view>
