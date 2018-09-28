@@ -11,7 +11,7 @@ import Broadcast from '../components/Broadcast'
 		name:'home',
 		data(){
 			return{
-				imgurlN:['static/banner.jpg','../../static/images/banner.jpg']
+				imgurlN:['static/images/banner.jpg','../../static/images/banner.jpg']
 			}
 		},
 		components:{
