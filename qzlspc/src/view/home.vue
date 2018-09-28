@@ -1,7 +1,8 @@
 <template>
 	<div class="home">
-		<Broadcast :imgurlC= "imgurlN"></Broadcast>
+		<Broadcast :imgurl= "imgurlN"></Broadcast>
 		<router-view></router-view>
+		
 	</div>
 </template>
 
