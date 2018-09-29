@@ -4,26 +4,66 @@
 			<div class="filter-title">
 				<i><span>条件筛选</span></i>
 			</div>
+			<!-- 区域 城市-->
 			<div class="region">
 		        <div class="region-title">
 	                <em>区域</em>
-	                <a href="javascript:void(0)" name="city" value="0">不限</a>
+	                <a @click="setcityflag($event)" :class="{'active':cityflag==-1}"  href="javascript:void(0)" name="city"  data-cityflag="-1">不限</a>
 		        </div>
                 <p class="citys">
-	                <a href="javascript:void(0)" name="city" pinyin="beihaishi" value="43">北海市</a>
-	                <a href="javascript:void(0)" name="city" pinyin="fangchenggangshi" value="44">防城港市</a>               
-	                <a href="javascript:void(0)" name="city" pinyin="guilinshi" value="45" id="nav">桂林市</a>
+                	<block v-for="(item,index) in citys" key="index">
+                		<a @click="setcityflag($event)" :class="{'active':cityflag==index}" href="javascript:void(0)" name="city" :data-cityflag="index">{{item.city}}</a>
+                	</block>
                 </p>
             </div>
-            	
-            </div>
-		</div>
+        <!-- 价格 钱-->
+	        <div class="price">
+		        <div class="price-title">
+	                <em>价格</em>
+	                <a :class="{'active':moneyflag==-1}" href="javascript:void(0)" name="money" data-moneyflag="-1">不限</a>
+		        </div>
+	            <p class="moneys">
+	            	<block v-for="(item,index) in moneys" key="index">
+	            		<a :class="{'active':moneyflag==index}" href="javascript:void(0)" name="money" data-moneyflag="index">{{item.money}}</a>
+	            	</block>
+	            </p>
+	        </div>
+        </div>
 	</div>
 </template>
 
 <script>
 	export default{
-		name:'building'
+		name:'building',
+		data() {
+			return {
+				cityflag:0,
+				moneyflag:-1,
+				citys:[
+					{"city":"惠安市"},
+					{"city":"晋江市"},
+					{"city":"石狮市"},
+					{"city":"南安市"},
+					{"city":"永春县"},
+					{"city":"德化县"},
+					{"city":"洛江区"},
+					{"city":"泉港区"},
+					{"city":"鲤城区"},
+					{"city":"安溪县"},
+					{"city":"丰泽区"},
+					{"city":"金门县"},
+					],
+				moneys:[
+					{"money":"4000以下"}
+					]
+			}
+		},
+		methods:{
+			setcityflag(e) {
+				this.cityflag = e.target.dataset.cityflag;
+				// console.log(e.target.dataset.cityflag);
+			}
+		}
 	}
 </script>
 
@@ -65,22 +105,22 @@
 		font-style: normal;
 	}
 	/*区域*/
-	.region{
+	.region,
+	.price{
 		padding: 10px 0;
 		background-color: #fff;
-		box-shadow: -3px 0px 10px rgba(0,0,0,.1),
-					0px 0px 0px rgba(0,0,0,0.01),
-					0px 0px 0px rgba(0,0,0,0.01),
-					3px 0px 10px rgba(0,0,0,.1);
+		box-shadow: 6px 6px 10px  rgba(0,0,0,.1);
 		overflow: auto;
 	}
-	.region-title{
+	.region-title,
+	.price-title{
 	    width: 145px;
 	    float: left;
 	    text-align: center;
 	    display: block;
 	}
-	.region-title em {
+	.region-title em,
+	.price-title em{
 	    font-size: 14px;
 	    color: #333;
 	    font-weight: 600;
@@ -88,7 +128,8 @@
 	    top: 17px;
 	    font-style: normal;
 	}
-	.region-title  a {
+	.region-title a,
+	.price-title a{
 	    font-size: 14px;
 	    margin: 10px;
 	    position: relative;
@@ -98,22 +139,33 @@
 	    border-radius: 3px;
 	    color: #333;
 	}
-	.citys {
+	.citys,
+	.moneys{
 		display: block;
 	    margin-bottom: 15px;
 	    width: 1040px;
 	    float: left;
 	}
-	.citys a {
+	.citys a,
+	.moneys a{
 	    height: auto;
 	    margin: 0 auto;
 	    left: 50px;
 	    padding: 5px 10px 5px 10px;
 	    border-radius: 3px;
 	    color: #737373;
+	    margin-left:10px; 
 	}
-	.citys a:hover,.region-title  a:hover{
+	.citys a:hover,
+	.region-title a:hover,
+	.moneys a:hover,
+	.price-title a:hover{
 		background-color: #FC8C49;
 		color: #fff;
+	}
+	/*active*/
+	.active{
+		background-color: #FC8C49;
+		color: #fff !important;
 	}
 </style>
