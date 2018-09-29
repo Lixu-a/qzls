@@ -23,6 +23,9 @@ export default {
   a{
     text-decoration: none;
   }
+  #app{
+    background-color: #F8F8F8;
+  }
   .public-container{
     width: 1200px;
     min-width: 1200px;

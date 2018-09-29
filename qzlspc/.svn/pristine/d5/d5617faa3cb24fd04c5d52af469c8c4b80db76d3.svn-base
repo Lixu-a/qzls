@@ -14,7 +14,7 @@
 		props:{
 			imgurl:{
 				type:Array,
-				default:['../assets/images/logo.jpg','../assets/images/logo.jpg']
+				default:['../assets/images/logo.jpg','../assets//images/logo.jpg']
 			}
 		}
 	}

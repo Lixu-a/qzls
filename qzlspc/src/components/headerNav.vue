@@ -5,10 +5,11 @@
 		class="el-menu-demo"
 		mode="horizontal"
 		@select="handleSelect"
-		background-color="#F7F7F7"
+		background-color="#fff"
 		text-color="#000"
 		active-text-color="#FE701A"
 		router>
+		<!-- #F7F7F7 -->
 			<el-menu-item index="/home">首页</el-menu-item>
 			<el-menu-item index="/building">楼盘</el-menu-item>
 			<el-menu-item index="/news">热点资讯</el-menu-item>
@@ -47,13 +48,13 @@
 		position: relative;
 	}
 	.el-menu-demo {
-		padding: 0 300px 0 400px;
+		padding: 0 300px 0 530px;
 		box-shadow: 0px 0px 10px rgba(0,0,0,.3);
 		min-width: 1200px;
 		position: relative;
 	}
 	.el-menu-demo .el-menu-item{
-		font-size: 20px;
+		font-size: 18px;
 	}
 	/*修改样式*/
 	.el-menu--horizontal{
@@ -61,7 +62,7 @@
 	}
 	.logo{
 		position: absolute;
-		left: 200px;
+		left: 360px;
 		top: 0px;
 		display: flex;
 	}
