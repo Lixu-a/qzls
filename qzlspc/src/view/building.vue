@@ -43,9 +43,36 @@
 	        </div>
         </div>
         <!-- 房子信息列表 -->
-        <div class="list">
+        <div class="building-list public-container">
         	<ul>
-        		<li></li>
+        		<li>
+        			<router-link to="/home">
+        				<img src="/static/images/house.jpg" alt="">
+        			</router-link>
+        			<div class="building-message">
+        				<div class="title">
+        					何辉聚楼盘
+        				</div>
+        				<div class="phone-number">
+        					<img src="../assets/images/phone.png" alt="">
+        					<span>1008610086</span>
+        				</div>
+        				<div class="room-style">
+        					户型：三室两厅一卫
+        				</div>
+        				<div class="address">
+        					地址：泉州万达科技楼旁
+        				</div>
+        				<div class="Character">
+        					<i>水景住宅</i>
+        					<i>江景美宅</i>
+        					<i>养生社区</i>
+        				</div>
+        			</div>
+        			<div class="unit-price">
+        				<i>8900</i><span>元/㎡</span>
+        			</div>
+        		</li>
         	</ul>
         </div>
 	</div>
@@ -221,11 +248,111 @@
 		color: #fff !important;
 	}
 	/*房子信息列表*/
-	.m_lp_list li {
+	.building-list ul{
+		/*font-size: 0;*/
+	}
+	.building-list ul li {
 	    width: 880px;
 	    height: 241px;
 	    background: #FFF;
 	    margin-bottom: 20px;
 	    border-radius: 3px;
+	    margin-left: -40px;
+	    position: relative;
+	}
+	.building-list ul li a{
+		display: block;
+		width: 267px;
+		height: 195px;
+		padding-top: 22px;
+		margin-left: 30px;
+		float: left;
+	}
+	.building-list ul li a img{
+		width: 100%;
+		height: 100%;
+		box-shadow: 6px 6px 10px  rgba(0,0,0,.1);
+	}
+	.building-list ul li .building-message{
+		width: 540px;
+		height: 194px;
+		float: left;
+		padding-top: 22px;
+		margin-left: 26px;
+		text-align: left;
+	}
+	.building-message .title{
+	    height: 40px;
+	    line-height: 40px;
+	    font-size: 20px;
+	    color: #333;
+	    font-weight: 600;
+	}
+	.building-message .title:hover{
+		color: #FC8C49;
+	}
+	.building-message .phone-number{
+		margin-top: 10px;
+	}
+	.building-message .phone-number img{
+		width: 20px;
+		height: 20px;
+		vertical-align: middle;
+	}
+	.building-message .phone-number span{
+		font-size: 18px;
+    	color: #627B9E;
+    	font-weight: 600;
+	}
+	.building-message .room-style{
+		margin-top: 15px;
+		font-size: 14px;
+    	color: #666;
+	}
+	.building-message .address{
+		margin-top: 15px;
+	    width: 220px;
+	    font-size: 14px;
+	    color: #666;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    overflow: hidden;
+	}
+	.building-message .Character{
+		margin-top: 15px;
+	}
+	.building-message .Character i{
+		font-style: normal;
+		margin-right: 10px;
+	    padding: 3px 7px;
+	    font-size: 13px;
+	}
+	.building-message .Character i:nth-child(3n+2){
+		background: #EBF3FE;
+	    color: #638EC9;
+	}
+	.building-message .Character i:nth-child(3n){
+		background: #F8EAE6;
+    	color: #E3957E
+	}
+	.building-message .Character i:nth-child(3n+1){
+		background: #E2F8E1;
+    	color: #75AB78;
+	}
+	/*单价*/
+	.unit-price {
+		position: absolute;
+		top: 75px;
+		right: 100px;
+	}
+	.unit-price i{
+		display: inline-block;
+		font-size: 24px;
+    	color: #FF5454;
+    	font-weight: 600;
+	}
+	.unit-price span{
+		display: inline-block;
+		margin-left: 8px;
 	}
 </style>
