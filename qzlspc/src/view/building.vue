@@ -42,6 +42,22 @@
 	            </p>
 	        </div>
         </div>
+        <!-- 排序 -->
+        <div class="sorting public-container">
+		    <ul class="sorting-list">
+		        <!-- id="sort"  -->
+		        <li name="default" class="defaultsort sort">默认排序</li>
+		        <li name="pricesort" class="pricesort"><span class="pricesort-hover">价格排序</span>
+			        <div class="sort-select" style="display:none;">
+			            <span name="pricesort" value="1" class="m_sortClick">低到高</span>
+			            <span name="pricesort" value="2" class="m_sortClick">高到低</span>
+			        </div>
+		        </li>
+		        
+		        <li name="area" class="areasort">面积排序</li>
+		    </ul>
+		    <span class="sortnum">共为您找到 <i>18</i> 个楼盘信息</span>
+		</div>
         <!-- 房子信息列表 -->
         <div class="building-list public-container">
         	<ul>
@@ -246,6 +262,58 @@
 	.active{
 		background-color: #FC8C49;
 		color: #fff !important;
+	}
+	/*排序*/
+	.sorting{
+		background-color: #fff;
+		overflow: auto;
+	}
+	.sorting .sorting-list{
+		display: inline-block;
+		font-size: 0;
+		float: left;
+	}
+	.sorting .sorting-list li{
+		display: inline-block;
+		width: 110px;
+	    height: 50px;
+	    float: left;
+	    text-align: center;
+	    line-height: 50px;
+	    font-size: 14px;
+	    cursor: pointer;
+	}
+	.sorting .sorting-list li:nth-child(1){
+		margin-left: -40px;
+	}
+	.sorting .sorting-list li .pricesort{
+		position: relative;
+	}
+	.sorting .sorting-list li .pricesort .sort-select{
+		width: 110px;
+	    overflow: hidden;
+	    position: absolute;
+	    top: 45px;
+	    left: 110px;
+	    background: #FFF;
+	    z-index: 1;
+	}
+	.sorting .sortnum{
+		font-size: 14px;
+	    color: #666;
+	    float: right;
+	    display: block;
+	    line-height: 50px;
+	    margin-right: 60px;
+	    font-style: normal;
+	}
+	.sorting .sortnum i{
+		font-size: 18px;
+	    color: #FF5454;
+	    font-style: normal;
+	}
+	.sort {
+	    color: #FF594A !important;
 	}
 	/*房子信息列表*/
 	.building-list ul{
