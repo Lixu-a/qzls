@@ -1,5 +1,6 @@
 <template>
 	<div class="building">
+	<!-- 条件筛选 -->
 		<div class="condition-filter public-container">
 			<div class="filter-title">
 				<i><span>条件筛选</span></i>
@@ -28,6 +29,12 @@
 	            	</block>
 	            </p>
 	        </div>
+        </div>
+        <!-- 房子信息列表 -->
+        <div class="list">
+        	<ul>
+        		<li></li>
+        	</ul>
         </div>
 	</div>
 </template>
@@ -167,5 +174,13 @@
 	.active{
 		background-color: #FC8C49;
 		color: #fff !important;
+	}
+	/*房子信息列表*/
+	.m_lp_list li {
+	    width: 880px;
+	    height: 241px;
+	    background: #FFF;
+	    margin-bottom: 20px;
+	    border-radius: 3px;
 	}
 </style>
