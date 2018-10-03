@@ -42,4 +42,9 @@ export default {
     text-align: center;
     color: #2c3e50;
   }
+  /*修改element-ui默认分页颜色*/
+  .el-pagination.is-background .el-pager li:not(.disabled).active {
+      background-color: #FC8C49 !important;
+      color: #fff;
+  }
 </style>

@@ -46,62 +46,56 @@
         <div class="sorting public-container">
 		    <ul class="sorting-list">
 		        <!-- id="sort"  -->
-		        <li name="default" class="defaultsort sort">默认排序</li>
-		        <li name="pricesort" class="pricesort"><span class="pricesort-hover">价格排序</span>
-			        <div class="sort-select" style="display:none;">
-			            <span name="pricesort" value="1" class="m_sortClick">低到高</span>
-			            <span name="pricesort" value="2" class="m_sortClick">高到低</span>
+		        <li name="default" class="defaultsort" :class="{'sort':sort==0}" @click="setdefault()">默认排序</li>
+		        <li name="pricesort" class="pricesort"><span :class="{'sort':sort==1}" class="pricesort-hover">{{pricesortText}}</span>
+			        <div class="sort-select" style="display:none">
+			            <span  value="1" class="ltg" @click="ltg()">低到高</span>
+			            <span  value="2" class="gtl" @click="gtl()">高到低</span>
 			        </div>
 		        </li>
 		        
-		        <li name="area" class="areasort">面积排序</li>
+		        <!-- <li name="area" class="areasort">面积排序</li> -->
 		    </ul>
-		    <span class="sortnum">共为您找到 <i>18</i> 个楼盘信息</span>
+		    <span class="sortnum" v-if="listItem.length">共为您找到 <i>{{listItem.length}}</i> 个楼盘信息</span>
 		</div>
         <!-- 房子信息列表 -->
-        <div class="building-list public-container">
-        	<ul>
-        		<li>
-        			<router-link to="/home">
-        				<img src="/static/images/house.jpg" alt="">
-        			</router-link>
-        			<div class="building-message">
-        				<div class="title">
-        					何辉聚楼盘
-        				</div>
-        				<div class="phone-number">
-        					<img src="../assets/images/phone.png" alt="">
-        					<span>1008610086</span>
-        				</div>
-        				<div class="room-style">
-        					户型：三室两厅一卫
-        				</div>
-        				<div class="address">
-        					地址：泉州万达科技楼旁
-        				</div>
-        				<div class="Character">
-        					<i>水景住宅</i>
-        					<i>江景美宅</i>
-        					<i>养生社区</i>
-        				</div>
-        			</div>
-        			<div class="unit-price">
-        				<i>8900</i><span>元/㎡</span>
-        			</div>
-        		</li>
-        	</ul>
-        </div>
+        <block v-for="(item,index) in listItem" key="index">
+       		<listItem :listItem="item"></listItem>
+       	</block>
+       	<div class="public-container">
+	       	<div v-if="!listItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
+	       	color:#FC8C49">
+	       		暂无更多
+	       	</div>
+	       	<div v-if="listItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
+	       	color:#FC8C49">
+		       	<el-pagination
+				  background
+				  layout="prev, pager, next"
+				  :total="listItem.length">
+				</el-pagination>
+			</div>
+	    </div>
 	</div>
 </template>
 
 <script>
+//工具函数
+
+// 列表数据
+import listItem from "../components/list-item"
 	export default{
 		name:'building',
+		components:{
+			listItem
+		},
 		data() {
 			return {
 				cityflag:-1,
 				moneyflag:-1,
 				roomflag:-1,
+				sort:0,
+				pricesortText:"价格排序",
 				citys:[
 					{"city":"惠安市"},
 					{"city":"晋江市"},
@@ -135,12 +129,34 @@
 					{"room":"三室两厅"},
 					{"room":"四室一厅"},
 					{"room":"四室两厅"},
-					{"room":"四室两厅三卫一厨"},
+					{"room":"四室两厅三卫"},
 					{"room":"五室以上"},
-					]
+					],
+				oldlistItem:[{"image":"/static/images/house.jpg",
+					"title":"何辉聚楼盘",
+					"phone":1008610086,
+					"style":"三室两厅一卫",
+					"address":"丰泽区 泉州万达科技楼旁",
+					"character":[{"c":"水景住宅"},{"c":"江景美宅"},{"c":"养生社区"}],
+					"price":9700
+					},{"image":"/static/images/house.jpg",
+					"title":"何辉聚楼盘",
+					"phone":1001010010,
+					"style":"两室两厅一卫",
+					"address":"丰泽区 泉州万达科技楼旁",
+					"character":[{"c":"江景美宅"},{"c":"养生社区"}],
+					"price":9500
+					}],//从数据库请求的数据，之后还要computed-listItem=oldlistItem
+					// 储存数据的循环遍历的数组listItem
+				listItem:[]
 			}
 		},
+		mounted() {
+			//等有后台请求的时候，这里改成调用一个方法，方法里面写request请求oldlistItem数据
+			this.listItem = this.oldlistItem;
+		},
 		methods:{
+			// 设置点击改变激活状态
 			setcityflag(e) {
 				this.cityflag = e.target.dataset.cityflag;
 			},
@@ -149,6 +165,30 @@
 			},
 			setroomflag(e) {
 				this.roomflag = e.target.dataset.roomflag;
+			},
+			// 排序
+			setdefault() {
+				this.sort = 0;//激活状态
+				this.pricesortText = "价格排序";
+				this.listItem=Object.assign([],this.oldlistItem);//设置默认
+			},
+			ltg() {
+				this.sort = 1;
+				this.pricesortText = "低到高";
+				this.listItem.sort(function(a, b) {
+						var aa = a['price'];
+						var bb = b['price'];
+						return aa - bb;
+				});
+			},
+			gtl() {
+				this.sort = 1;
+				this.pricesortText = "高到低";
+				this.listItem.sort(function(a, b) {
+						var aa = a['price'];
+						var bb = b['price'];
+						return bb - aa;
+				});
 			}
 		}
 	}
@@ -266,7 +306,8 @@
 	/*排序*/
 	.sorting{
 		background-color: #fff;
-		overflow: auto;
+		/*overflow: auto;*/
+		height: 50px;
 	}
 	.sorting .sorting-list{
 		display: inline-block;
@@ -286,17 +327,27 @@
 	.sorting .sorting-list li:nth-child(1){
 		margin-left: -40px;
 	}
-	.sorting .sorting-list li .pricesort{
+	.sorting .sorting-list .pricesort{
 		position: relative;
 	}
-	.sorting .sorting-list li .pricesort .sort-select{
+	.sorting .sorting-list .pricesort:hover .sort-select{
+		display: block !important;
+	}
+	.sorting .sorting-list .pricesort .sort-select{
 		width: 110px;
 	    overflow: hidden;
 	    position: absolute;
 	    top: 45px;
-	    left: 110px;
+	    left: 0px;
 	    background: #FFF;
 	    z-index: 1;
+	}
+	.sorting .sorting-list .pricesort .sort-select span{
+		display: block;
+	}
+	.sorting .sorting-list .pricesort .sort-select span:hover{
+		color: #fc8c49;
+		background-color: rgba(252,113,29,0.16);
 	}
 	.sorting .sortnum{
 		font-size: 14px;
@@ -309,118 +360,11 @@
 	}
 	.sorting .sortnum i{
 		font-size: 18px;
-	    color: #FF5454;
+	    color: #fc8c49;
 	    font-style: normal;
 	}
 	.sort {
-	    color: #FF594A !important;
+	    color: #fc8c49 !important;
 	}
-	/*房子信息列表*/
-	.building-list ul{
-		/*font-size: 0;*/
-	}
-	.building-list ul li {
-	    width: 880px;
-	    height: 241px;
-	    background: #FFF;
-	    margin-bottom: 20px;
-	    border-radius: 3px;
-	    margin-left: -40px;
-	    position: relative;
-	}
-	.building-list ul li a{
-		display: block;
-		width: 267px;
-		height: 195px;
-		padding-top: 22px;
-		margin-left: 30px;
-		float: left;
-	}
-	.building-list ul li a img{
-		width: 100%;
-		height: 100%;
-		box-shadow: 6px 6px 10px  rgba(0,0,0,.1);
-	}
-	.building-list ul li .building-message{
-		width: 540px;
-		height: 194px;
-		float: left;
-		padding-top: 22px;
-		margin-left: 26px;
-		text-align: left;
-	}
-	.building-message .title{
-	    height: 40px;
-	    line-height: 40px;
-	    font-size: 20px;
-	    color: #333;
-	    font-weight: 600;
-	}
-	.building-message .title:hover{
-		color: #FC8C49;
-	}
-	.building-message .phone-number{
-		margin-top: 10px;
-	}
-	.building-message .phone-number img{
-		width: 20px;
-		height: 20px;
-		vertical-align: middle;
-	}
-	.building-message .phone-number span{
-		font-size: 18px;
-    	color: #627B9E;
-    	font-weight: 600;
-	}
-	.building-message .room-style{
-		margin-top: 15px;
-		font-size: 14px;
-    	color: #666;
-	}
-	.building-message .address{
-		margin-top: 15px;
-	    width: 220px;
-	    font-size: 14px;
-	    color: #666;
-	    text-overflow: ellipsis;
-	    white-space: nowrap;
-	    overflow: hidden;
-	}
-	.building-message .Character{
-		margin-top: 15px;
-	}
-	.building-message .Character i{
-		font-style: normal;
-		margin-right: 10px;
-	    padding: 3px 7px;
-	    font-size: 13px;
-	}
-	.building-message .Character i:nth-child(3n+2){
-		background: #EBF3FE;
-	    color: #638EC9;
-	}
-	.building-message .Character i:nth-child(3n){
-		background: #F8EAE6;
-    	color: #E3957E
-	}
-	.building-message .Character i:nth-child(3n+1){
-		background: #E2F8E1;
-    	color: #75AB78;
-	}
-	/*单价*/
-	.unit-price {
-		position: absolute;
-		top: 75px;
-		right: 100px;
-	}
-	.unit-price i{
-		display: inline-block;
-		font-size: 24px;
-    	color: #FF5454;
-    	font-weight: 600;
-	}
-	.unit-price span{
-		display: inline-block;
-		margin-left: 8px;
-	}
+	
 </style>

@@ -2,7 +2,6 @@
 	<div class="block">
 		<el-carousel trigger="click" height="450px" :interval="6000">
 			<el-carousel-item v-for="(item,index) in imgurl" :key="index">
-<!-- 			    <img :src="item" alt=""> -->
 			    <img :src="item" alt="">
 			</el-carousel-item>
 		</el-carousel>

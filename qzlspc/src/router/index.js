@@ -8,7 +8,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/',component: home},
+    {path: '/',redirect: '/home'},
     {path: '/home',component: home},
     {path: '/building',component: building},
     {path: '/news',component: news}
