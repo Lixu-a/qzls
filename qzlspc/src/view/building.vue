@@ -9,23 +9,34 @@
 			<div class="region">
 		        <div class="region-title">
 	                <em>区域</em>
-	                <a @click="setcityflag($event)" :class="{'active':cityflag==-1}"  href="javascript:void(0)" name="city"  data-cityflag="-1">不限</a>
+	                <a @click="setcityflag($event)" 
+	                	:class="{'active':cityflag==-1}"  
+	                	href="javascript:void(0)" name="city"  
+	                	data-cityflag="-1">不限</a>
 		        </div>
                 <p class="citys">
-                	<block v-for="(item,index) in citys" key="index">
-                		<a @click="setcityflag($event)" :class="{'active':cityflag==index}" href="javascript:void(0)" name="city" :data-cityflag="index">{{item.city}}</a>
-                	</block>
+                	<a v-for="(item,index) in citys" :key="index" 
+                		@click="setcityflag($event)" 
+                		:class="{'active':cityflag==index}" 
+                		href="javascript:void(0)" name="city" 
+                		:data-cityflag="index">{{item.city}}</a>
                 </p>
             </div>
         <!-- 价格 钱-->
 		        <div class="price">
 			        <div class="price-title">
 		                <em>价格</em>
-		                <a @click="setmoneyflag($event)" :class="{'active':moneyflag==-1}" href="javascript:void(0)" name="money" data-moneyflag="-1">不限</a>
+		                <a @click="setmoneyflag($event)" 
+		                	:class="{'active':moneyflag==-1}" 
+		                	href="javascript:void(0)" name="money" 
+		                	data-moneyflag="-1">不限</a>
 			        </div>
 		            <p class="moneys">
-		            	<span v-for="(item,index) in moneys" key="index">
-		            		<a @click="setmoneyflag($event)" :class="{'active':moneyflag==index}" href="javascript:void(0)" name="money" :data-moneyflag="index">{{item.money}}</a>
+		            	<span v-for="(item,index) in moneys" :key="index">
+		            		<a @click="setmoneyflag($event)" 
+		            			:class="{'active':moneyflag==index}" 
+		            			href="javascript:void(0)" name="money" 
+		            			:data-moneyflag="index">{{item.money}}</a>
 		            	</span>
 		            </p>
 		        </div>
@@ -33,11 +44,17 @@
 	        <div class="house-type">
 		        <div class="house-type-title">
 	                <em>户型</em>
-	                <a @click="setroomflag($event)" :class="{'active':roomflag==-1}" href="javascript:void(0)" name="room" data-roomflag="-1">不限</a>
+	                <a @click="setroomflag($event)" 
+	                	:class="{'active':roomflag==-1}" 
+	                	href="javascript:void(0)" name="room" 
+	                	data-roomflag="-1">不限</a>
 		        </div>
 	            <p class="rooms">
-	            	<span v-for="(item,index) in rooms" key="index">
-	            		<a @click="setroomflag($event)" :class="{'active':roomflag==index}" href="javascript:void(0)" name="room" :data-roomflag="index">{{item.room}}</a>
+	            	<span v-for="(item,index) in rooms" :key="index">
+	            		<a @click="setroomflag($event)" 
+	            			:class="{'active':roomflag==index}" 
+	            			href="javascript:void(0)" name="room" 
+	            			:data-roomflag="index">{{item.room}}</a>
 	            	</span>
 	            </p>
 	        </div>
@@ -46,7 +63,9 @@
         <div class="sorting public-container">
 		    <ul class="sorting-list">
 		        <!-- id="sort"  -->
-		        <li name="default" class="defaultsort" :class="{'sort':sort==0}" @click="setdefault()">默认排序</li>
+		        <li name="default" class="defaultsort" 
+		        	:class="{'sort':sort==0}" 
+		        	@click="setdefault()">默认排序</li>
 		        <li name="pricesort" class="pricesort"><span :class="{'sort':sort==1}" class="pricesort-hover">{{pricesortText}}</span>
 			        <div class="sort-select" style="display:none">
 			            <span  value="1" class="ltg" @click="ltg()">低到高</span>
@@ -56,23 +75,24 @@
 		        
 		        <!-- <li name="area" class="areasort">面积排序</li> -->
 		    </ul>
-		    <span class="sortnum" v-if="listItem.length">共为您找到 <i>{{listItem.length}}</i> 个楼盘信息</span>
+		    <span class="sortnum" v-if="listItem.length">共为您找到 <i>{{oldlistItem.length}}</i> 个楼盘信息</span>
 		</div>
         <!-- 房子信息列表 -->
-        <block v-for="(item,index) in listItem" key="index">
+        <div v-for="(item,index) in listItem" :key="index">
        		<listItem :listItem="item"></listItem>
-       	</block>
+       	</div>
        	<div class="public-container">
 	       	<div v-if="!listItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
 	       	color:#FC8C49">
 	       		暂无更多
 	       	</div>
-	       	<div v-if="listItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
+	       	<div v-if="oldlistItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
 	       	color:#FC8C49">
 		       	<el-pagination
 				  background
+				  @current-change="handleCurrentChange"
 				  layout="prev, pager, next"
-				  :total="listItem.length">
+				  :total="oldlistItem.length">
 				</el-pagination>
 			</div>
 	    </div>
@@ -153,7 +173,7 @@ import listItem from "../components/list-item"
 		},
 		mounted() {
 			//等有后台请求的时候，这里改成调用一个方法，方法里面写request请求oldlistItem数据
-			this.listItem = this.oldlistItem;
+			this.listItem=this.oldlistItem.slice(0,10);
 		},
 		methods:{
 			// 设置点击改变激活状态
@@ -189,7 +209,13 @@ import listItem from "../components/list-item"
 						var bb = b['price'];
 						return bb - aa;
 				});
-			}
+			},
+			// 打印当前页码---分页码
+			handleCurrentChange(val) {
+				console.log(`当前页: ${val}`);
+				let a = val;
+		        this.listItem=this.oldlistItem.slice(a*10-10,a*10);
+		    }
 		}
 	}
 </script>

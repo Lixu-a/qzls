@@ -2,7 +2,7 @@
 	<div class="building-list public-container" >
         	<ul>
         		<li>
-        			<router-link to="/home">
+        			<router-link to="/home" class="link">
         				<img :src="listItem.image" alt="">
         			</router-link>
         			<div class="building-message">
@@ -11,7 +11,7 @@
         				</div>
         				<div class="phone-number">
         					<img src="../assets/images/phone.png" alt="">
-        					<span>{{listItem.phone}}</span>
+        					<a :href="'tel:'+listItem.phone">{{listItem.phone}}</a>
         				</div>
         				<div class="room-style" v-if="listItem.style">
         					户型：{{listItem.style}}
@@ -20,7 +20,7 @@
         					{{listItem.address}}
         				</div>
         				<div class="character">
-        					<i v-for="(item,index) in character">{{item.c}}</i>
+        					<i v-for="(item,index) in character" :key="index">{{item.c}}</i>
         				</div>
         			</div>
         			<div class="unit-price" >
@@ -64,7 +64,7 @@
 	.building-list ul li:hover {
 		box-shadow: 0px 0px 30px rgba(0,0,0,.1);
 	}
-	.building-list ul li a{
+	.building-list ul li .link{
 		display: block;
 		width: 267px;
 		height: 195px;
@@ -72,7 +72,7 @@
 		margin-left: 30px;
 		float: left;
 	}
-	.building-list ul li a img{
+	.building-list ul li .link img{
 		width: 100%;
 		height: 100%;
 		box-shadow: 6px 6px 10px  rgba(0,0,0,.1);
@@ -103,7 +103,8 @@
 		height: 20px;
 		vertical-align: middle;
 	}
-	.building-message .phone-number span{
+	.building-message .phone-number a{
+		/*display: inline !important;*/
 		font-size: 18px;
     	color: #627B9E;
     	font-weight: 600;
