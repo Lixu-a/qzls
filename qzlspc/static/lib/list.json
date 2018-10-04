@@ -1,0 +1,30 @@
+{
+    "status": 1,
+    "result": [{
+        "image": "/static/images/house.jpg",
+        "title": "何辉聚楼盘",
+        "phone": 1008610086,
+        "style": "三室两厅一卫",
+        "address": "丰泽区 泉州万达科技楼旁",
+        "character": [{
+            "c": "水景住宅"
+        }, {
+            "c": "江景美宅"
+        }, {
+            "c": "养生社区"
+        }],
+        "price": 1200
+    }, {
+        "image": "/static/images/house.jpg",
+        "title": "何辉聚楼盘",
+        "phone": 1001010010,
+        "style": "两室两厅一卫",
+        "address": "丰泽区 泉州万达科技楼旁",
+        "character": [{
+            "c": "江景美宅"
+        }, {
+            "c": "养生社区"
+        }],
+        "price": 1500
+    }]
+}

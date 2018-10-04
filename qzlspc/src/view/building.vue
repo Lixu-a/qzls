@@ -11,14 +11,16 @@
 	                <em>区域</em>
 	                <a @click="setcityflag($event)" 
 	                	:class="{'active':cityflag==-1}"  
-	                	href="javascript:void(0)" name="city"  
+	                	href="javascript:void(0)" 
+	                	name="city"  
 	                	data-cityflag="-1">不限</a>
 		        </div>
                 <p class="citys">
                 	<a v-for="(item,index) in citys" :key="index" 
                 		@click="setcityflag($event)" 
                 		:class="{'active':cityflag==index}" 
-                		href="javascript:void(0)" name="city" 
+                		href="javascript:void(0)" 
+                		name="city" 
                 		:data-cityflag="index">{{item.city}}</a>
                 </p>
             </div>
@@ -28,14 +30,16 @@
 		                <em>价格</em>
 		                <a @click="setmoneyflag($event)" 
 		                	:class="{'active':moneyflag==-1}" 
-		                	href="javascript:void(0)" name="money" 
+		                	href="javascript:void(0)" 
+		                	name="money"
 		                	data-moneyflag="-1">不限</a>
 			        </div>
 		            <p class="moneys">
 		            	<span v-for="(item,index) in moneys" :key="index">
 		            		<a @click="setmoneyflag($event)" 
 		            			:class="{'active':moneyflag==index}" 
-		            			href="javascript:void(0)" name="money" 
+		            			href="javascript:void(0)" 
+		            			name="money" 
 		            			:data-moneyflag="index">{{item.money}}</a>
 		            	</span>
 		            </p>
@@ -46,14 +50,16 @@
 	                <em>户型</em>
 	                <a @click="setroomflag($event)" 
 	                	:class="{'active':roomflag==-1}" 
-	                	href="javascript:void(0)" name="room" 
+	                	href="javascript:void(0)" 
+	                	name="room" 
 	                	data-roomflag="-1">不限</a>
 		        </div>
 	            <p class="rooms">
 	            	<span v-for="(item,index) in rooms" :key="index">
 	            		<a @click="setroomflag($event)" 
 	            			:class="{'active':roomflag==index}" 
-	            			href="javascript:void(0)" name="room" 
+	            			href="javascript:void(0)" 
+	            			name="room" 
 	            			:data-roomflag="index">{{item.room}}</a>
 	            	</span>
 	            </p>
@@ -78,15 +84,35 @@
 		    <span class="sortnum" v-if="listItem.length">共为您找到 <i>{{oldlistItem.length}}</i> 个楼盘信息</span>
 		</div>
         <!-- 房子信息列表 -->
-        <div v-for="(item,index) in listItem" :key="index">
-       		<listItem :listItem="item"></listItem>
-       	</div>
+        <div class="public-container" style="position:relative;">
+        	<div style="width:880px;" v-for="(item,index) in listItem" :key="index">
+	       		<listItem :listItem="item"></listItem>
+	       	</div>
+	       	<!-- 右边推荐列表 -->
+		    <div class="recommend">
+		    	<div class="title">
+		    		<em>
+		    			<span>热门</span>推荐
+		    		</em>
+		    	</div>
+		    	<ul class="recommendList">
+		    		<li v-for="(item, index) in listItem">
+		    			<router-link to="/home">
+		    				<img :src="item.image" alt="">
+		    				<span>{{item.title}}</span>
+		    			</router-link>
+		    		</li>
+		    	</ul>
+		    </div>
+        </div>
+       
+	    <!-- 暂无更多 -->
        	<div class="public-container">
 	       	<div v-if="!listItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
 	       	color:#FC8C49">
 	       		暂无更多
 	       	</div>
-	       	<div v-if="oldlistItem.length"  style="width: 880px;height: 30px;line-height:30px;background: #FFF;margin-bottom: 20px;border-radius: 3px;
+	       	<div v-if="oldlistItem.length"  style="width: 880px;height: 30px;line-height:30px;margin-bottom: 20px;border-radius: 3px;
 	       	color:#FC8C49">
 		       	<el-pagination
 				  background
@@ -96,6 +122,7 @@
 				</el-pagination>
 			</div>
 	    </div>
+	    
 	</div>
 </template>
 
@@ -152,63 +179,76 @@ import listItem from "../components/list-item"
 					{"room":"四室两厅三卫"},
 					{"room":"五室以上"},
 					],
-				oldlistItem:[{"image":"/static/images/house.jpg",
-					"title":"何辉聚楼盘",
-					"phone":1008610086,
-					"style":"三室两厅一卫",
-					"address":"丰泽区 泉州万达科技楼旁",
-					"character":[{"c":"水景住宅"},{"c":"江景美宅"},{"c":"养生社区"}],
-					"price":9700
-					},{"image":"/static/images/house.jpg",
-					"title":"何辉聚楼盘",
-					"phone":1001010010,
-					"style":"两室两厅一卫",
-					"address":"丰泽区 泉州万达科技楼旁",
-					"character":[{"c":"江景美宅"},{"c":"养生社区"}],
-					"price":9500
-					}],//从数据库请求的数据，之后还要computed-listItem=oldlistItem
-					// 储存数据的循环遍历的数组listItem
+				reqlistItem:[],//从数据库请求的数据
+				oldlistItem:[],
 				listItem:[]
 			}
 		},
 		mounted() {
-			//等有后台请求的时候，这里改成调用一个方法，方法里面写request请求oldlistItem数据
-			this.listItem=this.oldlistItem.slice(0,10);
+			//等有后台请求的数据
+			this.axios.get("/static/lib/list.json").then(res=>{
+				this.reqlistItem = Object.assign([],res.data.result);
+				this.oldlistItem=Object.assign([],res.data.result);
+				this.listItem=res.data.result.slice(0,10);
+			})
 		},
 		methods:{
 			// 设置点击改变激活状态
 			setcityflag(e) {
-				this.cityflag = e.target.dataset.cityflag;
+				var cityflag = e.target.dataset.cityflag;
+				if (cityflag>-1) {
+					if (cityflag==this.cityflag) {return;}//避免重复点击请求数据
+					console.log(this.citys[cityflag].city);
+				}else{
+					console.log("不限");
+				}
+				this.cityflag = cityflag;
 			},
 			setmoneyflag(e) {
-				this.moneyflag = e.target.dataset.moneyflag;
+				var moneyflag = e.target.dataset.moneyflag;
+				if (moneyflag>-1) {
+					if (moneyflag==this.moneyflag) {return;}//避免重复点击请求数据
+					console.log(this.moneys[moneyflag].money);
+				}else{
+					console.log("不限");
+				}
+				this.moneyflag = moneyflag;
 			},
 			setroomflag(e) {
-				this.roomflag = e.target.dataset.roomflag;
+				var roomflag = e.target.dataset.roomflag;
+				if (roomflag>-1) {
+					if (roomflag==this.roomflag) {return;}//避免重复点击请求数据
+					console.log(this.rooms[roomflag].room);
+				}else{
+					console.log("不限");
+				}
+				this.roomflag = roomflag;
 			},
 			// 排序
 			setdefault() {
 				this.sort = 0;//激活状态
 				this.pricesortText = "价格排序";
-				this.listItem=Object.assign([],this.oldlistItem);//设置默认
+				this.listItem=Object.assign([],this.reqlistItem);//设置默认
 			},
 			ltg() {
 				this.sort = 1;
 				this.pricesortText = "低到高";
-				this.listItem.sort(function(a, b) {
+				this.oldlistItem.sort(function(a, b) {
 						var aa = a['price'];
 						var bb = b['price'];
 						return aa - bb;
 				});
+				this.listItem=this.oldlistItem.slice(0,10);
 			},
 			gtl() {
 				this.sort = 1;
 				this.pricesortText = "高到低";
-				this.listItem.sort(function(a, b) {
+				this.oldlistItem.sort(function(a, b) {
 						var aa = a['price'];
 						var bb = b['price'];
 						return bb - aa;
 				});
+				this.listItem=this.oldlistItem.slice(0,10);
 			},
 			// 打印当前页码---分页码
 			handleCurrentChange(val) {
@@ -392,5 +432,62 @@ import listItem from "../components/list-item"
 	.sort {
 	    color: #fc8c49 !important;
 	}
-	
+	/*右边推荐列表*/
+	.building .recommend{
+		width: 303px;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		right:0px;
+		background-color: #fff;
+		text-align: left;
+	}
+	.building .recommend .title{
+		height: 30px;
+	    line-height: 30px;
+	    padding: 0 25px;
+	    margin-top: 10px;
+	}
+	.building .recommend .title em{
+		font-size: 18px;
+	    color: #FF5454;
+	    font-weight: 600;
+	    font-style: normal;
+	}
+	.building .recommend .title em span{
+		color: #333;
+	}
+	.building .recommend .recommendList{
+		margin-top: 10px;
+    	overflow: hidden;
+    	padding-left:15px; 
+	}
+	.building .recommend .recommendList li{
+		width: 130px;
+	    height: 100px;
+	    float: left;
+	    margin-right: 12px;
+	    position: relative;
+	    margin-bottom: 10px;
+	}
+	.building .recommend .recommendList li img{
+		width: 100%;
+		height: 100%;
+	}
+	.building .recommend .recommendList li img:hover{
+		/*filter: blur(1px);*/
+		box-shadow: 0px 0px 10px  rgba(0,0,0,.6);
+	}
+	.building .recommend .recommendList li span{
+		display: block;
+	    width: 100%;
+	    height: 30px;
+	    position: absolute;
+	    bottom: 0;
+	    background: rgba(160, 125, 96, 0.7);
+	    font-size: 13px;
+	    color: #FFF;
+	    text-align: center;
+	    line-height: 30px;
+	}
 </style>

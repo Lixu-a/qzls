@@ -3,15 +3,18 @@
     <!-- 头部导航 -->
     <headerNav></headerNav>
     <router-view/>
+    <!-- <footerNav></footerNav> -->
   </div>
 </template>
 
 <script>
-import headerNav from './components/headernav'
+import headerNav from './components/headerNav'
+import footerNav from './components/footerNav'
 export default {
   name: 'App',
   components: {
         headerNav
+        // footerNav
   }
 }
 </script>

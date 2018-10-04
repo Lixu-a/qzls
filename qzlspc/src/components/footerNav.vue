@@ -1,1 +1,120 @@
-footerNav.vue
+<template>
+	<div class="footerNav">
+		<div class="footerWrap public-container">
+			<div class="logotitle">
+				<img class="logo" src="../assets/images/logo.png" alt="">
+				<div class="title">泉州楼市</div>
+			</div>
+			<div class="service">
+				<span>客服热线：</span>
+				<a href="'tel:'1008610086">1008610086</a>
+			</div>
+			<div class="contact">
+				<div class="WeChatPublic">
+					<img src="../../static/images/weChat.jpg" alt="">
+					<span>关注泉州楼市微信号</span>
+				</div>
+				<div class="WeChat">
+					<img src="../../static/images/weChat.jpg" alt="">
+					<span>客服微信号</span>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</template>
+
+<script>
+	export default{
+		name:"footerNav",
+		data() {
+			return {
+
+			}
+		}
+	}
+</script>
+
+<style>
+	.footerNav{
+		padding: 55px 0 35px;
+		width: 100%;
+		background-color: #222;
+	}
+	.footerWrap{
+		text-align: left;
+		padding-left: 100px;
+	}
+	.footerWrap .logotitle{
+		display: flex;
+		width: 200px;
+		display: inline-block;
+	}
+	.footerWrap .logo{
+		margin-top: 6px;
+		width: 50px;
+		height: 50px;
+		vertical-align: top;
+	}
+	.footerWrap .title{
+		display: inline-block;
+		font-size: 1.65rem;
+		line-height: 60px;
+		font-weight: bold;
+		color: rgba(252, 113, 29, 0.7);
+	}
+	.footerWrap .service{
+		display: inline-block;
+		width: 250px;
+		margin-left: 60px;
+	}
+	.footerWrap .service span{
+		color: #999;
+	}
+	.footerWrap .service a{
+		font-size: 1.65rem;
+		line-height: 60px;
+		font-weight: bold;
+		color: rgba(252, 113, 29, 0.7);
+	}
+	.footerWrap .contact{
+		position: relative;
+		background-color: red;
+		width: 450px;
+		display: inline-block;
+	}
+	/*公众号关注图片定位*/
+	.footerWrap .contact .WeChatPublic{
+		position: absolute;
+		top: -70px;
+		right: 0;
+		display: inline-block;
+		width: 100px;
+		margin-left: 40px;
+		text-align: center;
+	}
+	.footerWrap .contact .WeChatPublic img,
+	.footerWrap .contact .WeChat img{
+		width: 100px;
+		height: 100px;
+	}
+	.footerWrap .contact .WeChatPublic span,
+	.footerWrap .contact .WeChat span{
+		white-space: nowrap;
+		display: inline-block;
+		color: #999;
+		font-size: 12px;
+		margin-top: 6px;
+		margin-left: -3px;
+	}
+	/*另一个图片定位*/
+	.footerWrap .contact .WeChat{
+		position: absolute;
+		top: -70px;
+		right: 130px;
+		display: inline-block;
+		width: 100px;
+		margin-left: 40px;
+		text-align: center;
+	}
+</style>

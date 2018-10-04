@@ -1,5 +1,5 @@
 <template>
-	<div class="building-list public-container" >
+	<div class="building-list" >
         	<ul>
         		<li>
         			<router-link to="/home" class="link">
@@ -7,7 +7,9 @@
         			</router-link>
         			<div class="building-message">
         				<div class="title">
+        					<router-link to="/home">
         					{{listItem.title}}
+        					</router-link>
         				</div>
         				<div class="phone-number">
         					<img src="../assets/images/phone.png" alt="">
@@ -49,8 +51,12 @@
 
 <style>
 	/*房子信息列表*/
+	.building-list{
+		width: 880px;
+	}
 	.building-list ul{
 		/*font-size: 0;*/
+		width: 880px;
 	}
 	.building-list ul li {
 	    width: 880px;
@@ -85,14 +91,14 @@
 		margin-left: 26px;
 		text-align: left;
 	}
-	.building-message .title{
+	.building-message .title a{
 	    height: 40px;
 	    line-height: 40px;
 	    font-size: 20px;
 	    color: #333;
 	    font-weight: 600;
 	}
-	.building-message .title:hover{
+	.building-message .title:hover a{
 		color: #FC8C49;
 	}
 	.building-message .phone-number{
