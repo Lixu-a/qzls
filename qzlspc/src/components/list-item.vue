@@ -2,12 +2,12 @@
 	<div class="building-list" >
         	<ul>
         		<li>
-        			<router-link to="/home" class="link">
+        			<router-link v-bind="{to:'/detail/'+listItem.id}" class="link">
         				<img :src="listItem.image" alt="">
         			</router-link>
         			<div class="building-message">
         				<div class="title">
-        					<router-link to="/home">
+        					<router-link v-bind="{to:'/detail/'+listItem.id}">
         					{{listItem.title}}
         					</router-link>
         				</div>

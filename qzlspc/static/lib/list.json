@@ -1,6 +1,7 @@
 {
     "status": 1,
     "result": [{
+        "id":1,
         "image": "/static/images/house.jpg",
         "title": "何辉聚楼盘",
         "phone": 1008610086,
@@ -15,6 +16,7 @@
         }],
         "price": 1200
     }, {
+        "id":2,
         "image": "/static/images/house.jpg",
         "title": "何辉聚楼盘",
         "phone": 1001010010,

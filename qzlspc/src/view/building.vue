@@ -72,7 +72,7 @@
 		        <li name="default" class="defaultsort" 
 		        	:class="{'sort':sort==0}" 
 		        	@click="setdefault()">默认排序</li>
-		        <li name="pricesort" class="pricesort"><span :class="{'sort':sort==1}" class="pricesort-hover">{{pricesortText}}</span>
+		        <li  name="pricesort" class="pricesort"><span :class="{'sort':sort==1}" class="pricesort-hover">{{pricesortText}}</span>
 			        <div class="sort-select" style="display:none">
 			            <span  value="1" class="ltg" @click="ltg()">低到高</span>
 			            <span  value="2" class="gtl" @click="gtl()">高到低</span>
@@ -97,7 +97,7 @@
 		    	</div>
 		    	<ul class="recommendList">
 		    		<li v-for="(item, index) in listItem">
-		    			<router-link to="/home">
+		    			<router-link v-bind="{to:'/detail/'+item.id}">
 		    				<img :src="item.image" alt="">
 		    				<span>{{item.title}}</span>
 		    			</router-link>
@@ -239,6 +239,11 @@ import listItem from "../components/list-item"
 						return aa - bb;
 				});
 				this.listItem=this.oldlistItem.slice(0,10);
+				// this.$refs.ltg.getBoundingClientRect();
+				// 滚动条滚动
+				// this.$nextTick(() => {
+					document.documentElement.scrollTop=380;
+				// });
 			},
 			gtl() {
 				this.sort = 1;
@@ -249,12 +254,20 @@ import listItem from "../components/list-item"
 						return bb - aa;
 				});
 				this.listItem=this.oldlistItem.slice(0,10);
+				// 滚动条滚动
+				this.$nextTick(() => {
+					document.documentElement.scrollTop=380;
+				});
 			},
 			// 打印当前页码---分页码
 			handleCurrentChange(val) {
 				console.log(`当前页: ${val}`);
 				let a = val;
 		        this.listItem=this.oldlistItem.slice(a*10-10,a*10);
+		        // 滚动条滚动
+				this.$nextTick(() => {
+					document.documentElement.scrollTop=380;
+				});
 		    }
 		}
 	}
