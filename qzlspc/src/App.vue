@@ -26,19 +26,21 @@ export default {
   a{
     text-decoration: none;
   }
-  #app{
-    background-color: #F8F8F8;
-  }
   .public-container{
     width: 1200px;
     min-width: 1200px;
-    margin: 20px auto;
+    margin: 0px auto;
   }
-  body{
+  html,body{
     margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 1200px;
     font-family: Arial,Helvetica,微软雅黑,;
   }
   #app {
+    width: 100%;
+    background-color: #F8F8F8;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

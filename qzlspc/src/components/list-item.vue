@@ -7,7 +7,7 @@
         			</router-link>
         			<div class="building-message">
         				<div class="title">
-        					<router-link v-bind="{to:'/detail/'+listItem.id}">
+        					<router-link :to="{path:'/detail/'+listItem.id}">
         					{{listItem.title}}
         					</router-link>
         				</div>

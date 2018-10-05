@@ -3,6 +3,7 @@
     "result": [{
         "id":1,
         "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
         "title": "何辉聚楼盘",
         "phone": 1008610086,
         "style": "三室两厅一卫",
@@ -12,13 +13,14 @@
         }, {
             "c": "江景美宅"
         }, {
-            "c": "养生社区"
+            "c": "海景洋房"
         }],
-        "price": 1200
+        "price": 500
     }, {
         "id":2,
         "image": "/static/images/house.jpg",
-        "title": "何辉聚楼盘",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "万科楼盘",
         "phone": 1001010010,
         "style": "两室两厅一卫",
         "address": "丰泽区 泉州万达科技楼旁",
@@ -28,5 +30,35 @@
             "c": "养生社区"
         }],
         "price": 1500
+    },{
+        "id":3,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "何辉聚楼盘",
+        "phone": 1008610086,
+        "style": "三室两厅一卫",
+        "address": "丰泽区 泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "江景美宅"
+        }, {
+            "c": "养生社区"
+        }],
+        "price": 800
+    }, {
+        "id":4,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "两室两厅一卫",
+        "address": "丰泽区 泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
     }]
 }

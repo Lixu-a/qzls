@@ -190,6 +190,8 @@ import listItem from "../components/list-item"
 				this.reqlistItem = Object.assign([],res.data.result);
 				this.oldlistItem=Object.assign([],res.data.result);
 				this.listItem=res.data.result.slice(0,10);
+				//把获取到的数据在vuex的reqlistItem也存一份
+				this.$store.commit('add',res.data.result);
 			})
 		},
 		methods:{
@@ -285,7 +287,7 @@ import listItem from "../components/list-item"
 	    background: #f5f7fa;
 	    width: 1200px;
 	    margin: auto;
-	    margin-top: 25px;
+	    /*padding-top: 25px;*/
 	}
 	.condition-filter .filter-title i{
 		content:"";
@@ -298,7 +300,7 @@ import listItem from "../components/list-item"
 	    font-weight: 600;
 	    text-indent: 26px;
 	    border-radius: 3px 0 0 0;
-	    background: #f8f8f8;
+	    /*background: #f8f8f8;*/
 	    border-bottom: 35px solid rgba(252, 113, 29, 0.8);
 	    border-left: 0px solid transparent;
 	    border-right: 40px solid transparent;
@@ -387,6 +389,7 @@ import listItem from "../components/list-item"
 		background-color: #fff;
 		/*overflow: auto;*/
 		height: 50px;
+		margin-top: 25px;
 	}
 	.sorting .sorting-list{
 		display: inline-block;

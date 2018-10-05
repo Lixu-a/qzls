@@ -48,7 +48,6 @@
 		position: relative;
 	}
 	.el-menu-demo {
-		padding: 0 300px 0 530px;
 		box-shadow: 0px 0px 10px rgba(0,0,0,.3);
 		min-width: 1200px;
 		position: relative;
@@ -75,6 +74,7 @@
 		font-size: 1.65rem;
 		line-height: 60px;
 		font-weight: bold;
+		white-space: nowrap;
 	}
 	.logo a{
 		color: #2C3E50;

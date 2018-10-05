@@ -13,7 +13,7 @@ export default new Router({
     {path: '/home',component: home},
     {path: '/building',component: building},
     {path: '/news',component: news},
-    {path: '/detail/:id',component: detail}
+    {path: '/detail/:id',name:'detail',component: detail}
   ],
   mode:'history'
 })
