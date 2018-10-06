@@ -98,6 +98,7 @@
 		    	<ul class="recommendList">
 		    		<li v-for="(item, index) in listItem">
 		    			<router-link v-bind="{to:'/detail/'+item.id}">
+		    			<!-- <router-link to="/home"> -->
 		    				<img :src="item.image" alt="">
 		    				<span>{{item.title}}</span>
 		    			</router-link>
@@ -166,18 +167,20 @@ import listItem from "../components/list-item"
 					{"money":"12000-14000"},
 					{"money":"14000-16000"},
 					{"money":"16000-18000"},
-					{"money":"20000以上"}
+					{"money":"20000以上"},
 					],
 				rooms:[
-					{"room":"一室一厅"},
-					{"room":"两室一厅"},
-					{"room":"三室一厅一卫"},
-					{"room":"两室两厅"},
-					{"room":"三室两厅"},
-					{"room":"四室一厅"},
-					{"room":"四室两厅"},
-					{"room":"四室两厅三卫"},
-					{"room":"五室以上"},
+					{"room":"一室"},
+					{"room":"两室"},
+					{"room":"三室"},
+					{"room":"四室"},
+					{"room":"五室"},
+					{"room":"六室"},
+					{"room":"七室"},
+					{"room":"公寓"},
+					{"room":"复式"},
+					{"room":"别墅"},
+					{"room":"其他"},
 					],
 				reqlistItem:[],//从数据库请求的数据
 				oldlistItem:[],
@@ -334,6 +337,7 @@ import listItem from "../components/list-item"
 	    float: left;
 	    text-align: center;
 	    display: block;
+	    margin-top: 4px;
 	}
 	.region-title em,
 	.price-title em,
@@ -368,6 +372,8 @@ import listItem from "../components/list-item"
 	.citys a,
 	.moneys a,
 	.rooms a{
+		display: inline-block;
+		padding-top: 10px;
 	    height: auto;
 	    margin: 0 auto;
 	    left: 50px;

@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<div class="photo">
-			<album></album>
+			<album :imgList="listItem.imgList"></album>
 		</div>
 	</div>
 </template>
@@ -53,9 +53,10 @@ import album from "../components/album"
 		name:'detail',
 		data() {
 			return {
-				listItem:{},
-				imageBig:'',
-				imageflag:0
+				listItem:{},//传过来的这条房子信息
+				imageBig:'',//detail
+				imageflag:0//切换图片
+				
 			}
 		},
 		components:{
