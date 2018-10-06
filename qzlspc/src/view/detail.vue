@@ -1,55 +1,65 @@
 <template>
 	<div class="detail">
-		<div class="detail-message public-container">
-			<div class="msg-left">
-				<div class="img">
-					<img :src="listItem.image" alt="">
+		<div class="detail-header">
+			<div class="detail-message public-container">
+				<div class="msg-left">
+					<div class="img">
+						<img :src="imageBig" alt="">
+					</div>
+					<div class="img-list">
+						<ul class="img-wrap">
+							<li v-for="(item,index) in listItem.imgList.slice(0,4)" :key="index">
+								<img @click="changeImage($event)" :class="{'imageactive':imageflag==index}" :data-index="index" :src="item.image" alt="">
+							</li>
+						</ul>
+					</div>
 				</div>
-				<div class="img-list">
-					<ul class="img-wrap">
-						<!-- <li v-for="(item,index) in listItem.imgList">
-							<img :src="item.image" alt="">
-						</li> -->
-						{{listItem.imgList}}
-					</ul>
+				<div class="msg-right">
+					<div class="title">
+						{{listItem.title}}
+					</div>
+					<div class="price" v-if="listItem.price">
+						均价：
+						<em>
+						{{listItem.price}}
+						<span>元/㎡</span>
+						</em>
+					</div>
+					<div class="character">
+						<i v-for="(item,index) in listItem.character" :key="index">{{item.c}}</i>
+					</div>
+					<div class="phone-number" v-if="listItem.phone">
+						<img src="../assets/images/phone.png" alt="">
+						<a :href="'tel:'+listItem.phone">{{listItem.phone}}</a>
+					</div>
+					<div class="room-style" v-if="listItem.style">
+						户型：{{listItem.style}}
+					</div>
+					<div class="address" v-if="listItem.address">
+						地址：{{listItem.address}}
+					</div>
 				</div>
 			</div>
-			<div class="msg-right">
-				<div class="title">
-					{{listItem.title}}
-				</div>
-				<div class="price" v-if="listItem.price">
-					均价：
-					<em>
-					{{listItem.price}}
-					<span>元/㎡</span>
-					</em>
-				</div>
-				<div class="character">
-					<i v-for="(item,index) in listItem.character" :key="index">{{item.c}}</i>
-				</div>
-				<div class="phone-number" v-if="listItem.phone">
-					<img src="../assets/images/phone.png" alt="">
-					<a :href="'tel:'+listItem.phone">{{listItem.phone}}</a>
-				</div>
-				<div class="room-style" v-if="listItem.style">
-					户型：{{listItem.style}}
-				</div>
-				<div class="address" v-if="listItem.address">
-					地址：{{listItem.address}}
-				</div>
-			</div>
+		</div>
+		<div class="photo">
+			<album></album>
 		</div>
 	</div>
 </template>
 
 <script>
+import album from "../components/album"
 	export default{
 		name:'detail',
 		data() {
 			return {
-				listItem:{}
+				listItem:{},
+				imageBig:'',
+				imageflag:0
 			}
+		},
+		components:{
+			album
 		},
 		computed: {
 			id(){
@@ -57,23 +67,35 @@
 				return this.$route.params.id;
 			}
 		},
-		mounted() {
+		created() {
 			//在reqlistItem里面获取跟此页面相同id的索引
 			let listItemIndex = this.$store.state.reqlistItem.findIndex((item) => {
 				return item.id == this.id; 
 			});
 			//根据索引获取此页面的数据
 			this.listItem = this.$store.state.reqlistItem[listItemIndex];
+			//渲染第一张大图
+			this.imageBig = this.$store.state.reqlistItem[listItemIndex].image;
+		},
+		methods:{
+			changeImage(e) {
+				//切换图片
+				this.imageBig = e.currentTarget.src;
+				//点击哪个图片加上imageactive样式
+				this.imageflag = e.currentTarget.dataset.index;
+			}
 		}
 	}
 </script>
 
 <style scoped>
 	.detail{
+		width: 100%;
+	}
+	.detail-header{
 		background:url(/static/images/detail-bg.png) no-repeat;
 		background-size: 100% 800px;
-		width: 100%;
-		height: 670px;
+		height: 650px;
 		padding-top: 70px;
 	}
 	.detail-message{
@@ -97,6 +119,37 @@
 	.detail-message .msg-left .img img{
 		width: 100%;
 		height: 100%;
+	}
+	.detail-message .msg-left{
+
+	}
+	.detail-message .msg-left .img-list{
+		/*ul的宽度*/
+		width: 540px;
+		height: 100px;
+		margin-top: 10px;
+	}
+	.detail-message .msg-left .img-wrap{
+		font-size: 0px;
+		white-space: nowrap;
+	}
+	.detail-message .msg-left .img-wrap li{
+		width: 120px;
+		height: 96px;
+		margin-right: 14px;
+		float: left;
+	}
+	.detail-message .msg-left .img-wrap li:nth-child(1){
+		margin-left: -40px;
+	}
+	.detail-message .msg-left .img-wrap li img{
+		width: 100%;
+		height: 100%;
+		border: 1px solid transparent;
+	}
+	.imageactive{
+		border: 1px solid rgba(254, 112, 26, 0.8) !important;
+		box-shadow: 6px 6px 10px  rgba(0,0,0,.1);
 	}
 	.detail-message .msg-right{
 		width: 615px;

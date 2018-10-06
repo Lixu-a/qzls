@@ -201,10 +201,16 @@ import listItem from "../components/list-item"
 				if (cityflag>-1) {
 					if (cityflag==this.cityflag) {return;}//避免重复点击请求数据
 					console.log(this.citys[cityflag].city);
+					// let region = this.citys[cityflag].city;
+					// // 点击区域进行筛选
+					// this.listItem = this.oldlistItem.filter(function(item){
+					// 	return item.region == region;
+					// });
 				}else{
 					console.log("不限");
 				}
 				this.cityflag = cityflag;
+				
 			},
 			setmoneyflag(e) {
 				var moneyflag = e.target.dataset.moneyflag;

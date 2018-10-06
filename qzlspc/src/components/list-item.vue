@@ -19,7 +19,7 @@
         					户型：{{listItem.style}}
         				</div>
         				<div class="address">
-        					{{listItem.address}}
+        					{{listItem.region}} {{listItem.address}}
         				</div>
         				<div class="character">
         					<i v-for="(item,index) in character" :key="index">{{item.c}}</i>
