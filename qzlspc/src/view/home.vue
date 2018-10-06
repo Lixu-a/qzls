@@ -1,12 +1,14 @@
 <template>
 	<div class="home">
 		<broadcast :imgurl= "imgurlN"></broadcast>
+		<recommend></recommend>
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
 import broadcast from '../components/broadcast'
+import recommend from '../components/recommend'
 	export default{
 		name:'home',
 		data(){
@@ -15,7 +17,8 @@ import broadcast from '../components/broadcast'
 			}
 		},
 		components:{
-			broadcast
+			broadcast,
+			recommend
 		}
 	}
 </script>

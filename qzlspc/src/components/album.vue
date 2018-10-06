@@ -160,7 +160,7 @@
 	}
 	.fade-enter-active,
   	.fade-leave-active {
-    	transition: all .3s linear;
+    	transition: all .5s linear;
     	transform: translate3d(0, 0, 0);
     	opacity: 1;
   	}

@@ -72,7 +72,7 @@
 		        <li name="default" class="defaultsort" 
 		        	:class="{'sort':sort==0}" 
 		        	@click="setdefault()">默认排序</li>
-		        <li  name="pricesort" class="pricesort"><span :class="{'sort':sort==1}" class="pricesort-hover">{{pricesortText}}</span>
+		        <li  name="pricesort" class="pricesort"><span :class="[sort==1?'sort':'']" class="pricesort-hover">{{pricesortText}}</span>
 			        <div class="sort-select" style="display:none">
 			            <span  value="1" class="ltg" @click="ltg()">低到高</span>
 			            <span  value="2" class="gtl" @click="gtl()">高到低</span>
@@ -285,6 +285,9 @@ import listItem from "../components/list-item"
 </script>
 
 <style scoped>
+.now{
+	border: 1px solid red;
+}
 	.building{
 
 	}

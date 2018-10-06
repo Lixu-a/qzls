@@ -12,7 +12,7 @@
 			<div class="contact">
 				<div class="WeChatPublic">
 					<img src="../../static/images/weChat.jpg" alt="">
-					<span>关注泉州楼市微信号</span>
+					<span>泉州楼市公众号</span>
 				</div>
 				<div class="WeChat">
 					<img src="../../static/images/weChat.jpg" alt="">
@@ -37,9 +37,10 @@
 
 <style>
 	.footerNav{
-		padding: 55px 0 35px;
+		padding: 65px 0 45px;
 		width: 100%;
 		background-color: #222;
+		/*background-color: #363A3D;*/
 	}
 	.footerWrap{
 		text-align: left;

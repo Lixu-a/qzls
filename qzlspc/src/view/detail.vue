@@ -24,6 +24,7 @@
 						{{listItem.price}}
 						<span>元/㎡</span>
 						</em>
+						<span v-if="listItem.release">（发布时间：{{listItem.release}}）</span>
 					</div>
 					<div class="character">
 						<i v-for="(item,index) in listItem.character" :key="index">{{item.c}}</i>
@@ -31,6 +32,9 @@
 					<div class="phone-number" v-if="listItem.phone">
 						<img src="../assets/images/phone.png" alt="">
 						<a :href="'tel:'+listItem.phone">{{listItem.phone}}</a>
+					</div>
+					<div class="room-style" v-if="listItem.area">
+						面积：{{listItem.area}}
 					</div>
 					<div class="room-style" v-if="listItem.style">
 						户型：{{listItem.style}}

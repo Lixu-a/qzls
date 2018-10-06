@@ -13,8 +13,8 @@ import footerNav from './components/footerNav'
 export default {
   name: 'App',
   components: {
+        // footerNav,
         headerNav
-        // footerNav
   }
 }
 </script>
