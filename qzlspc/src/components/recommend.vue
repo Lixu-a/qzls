@@ -38,5 +38,6 @@
 			height:300px
 			background-color:orange
 			.image
+				width:100%
 			
 </style>
