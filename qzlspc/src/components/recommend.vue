@@ -5,7 +5,8 @@
 				<img src="/static/images/house.jpg" alt="">
 				<div class="address">
 					<img src="" alt="">
-					<em>地址</em>
+					<span class="title">标题</span>
+					<em class="address">地址</em>
 				</div>
 			</div>
 			<div class="footer">
@@ -31,5 +32,11 @@
 	.recommend
 		width:100%
 		height:100px
-		background-color:red
+		padding-top:100px
+		.recommend-main
+			width:300px
+			height:300px
+			background-color:orange
+			.image
+			
 </style>
