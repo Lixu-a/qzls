@@ -33,7 +33,7 @@ export default {
     background-color:rgba(0,0,0,0.1); 
   }
   img[lazy="loading"]{
-
+    
   }
   .public-container{
     width: 1200px;

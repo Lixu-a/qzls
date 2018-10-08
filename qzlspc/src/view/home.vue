@@ -76,5 +76,6 @@ import recommend from '../components/recommend'
 	}
 	.home .more a{
 		color: #666;
+		/*color: #FE701A;*/
 	}
 </style>
