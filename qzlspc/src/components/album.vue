@@ -6,7 +6,7 @@
 			</div>
 			<ul class="album-images">
 				<li v-for="(item,index) in images" :key="index">
-					<img @click="bigImg" :src="item.image" alt="">
+					<img @click="bigImg" v-lazy="item.image" alt="">
 				</li>
 			</ul>
 			<div class="album-footer">

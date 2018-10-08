@@ -29,6 +29,12 @@ export default {
   em{
     font-style: normal;
   }
+  img{
+    background-color:rgba(0,0,0,0.1); 
+  }
+  img[lazy="loading"]{
+
+  }
   .public-container{
     width: 1200px;
     min-width: 1200px;

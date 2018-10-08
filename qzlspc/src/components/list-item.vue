@@ -3,7 +3,7 @@
         	<ul>
         		<li>
         			<router-link v-bind="{to:'/detail/'+listItem.id}" class="link">
-        				<img :src="listItem.image" alt="">
+        				<img v-lazy="listItem.image" alt="">
         			</router-link>
         			<div class="building-message">
         				<div class="title">

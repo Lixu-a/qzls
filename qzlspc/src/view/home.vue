@@ -56,7 +56,7 @@ import recommend from '../components/recommend'
 	}
 	.recommendItem{
 		display: inline-block;
-		margin: 0 50px 30px 50px;
+		margin: 0 50px 30px 40px;
 	}
 	.home .hotTitle{
 		height: 50px;

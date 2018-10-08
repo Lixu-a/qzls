@@ -3,7 +3,7 @@
 		<div class="recommend-main">
 			<div class="image">
 				<router-link :to="{path:'/recommendDetail/'+listItem.id}">
-					<img src="/static/images/house.jpg" alt="">
+					<img v-lazy="listItem.image" alt="">
 				</router-link>
 				<div class="address">
 					<i></i>

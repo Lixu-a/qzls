@@ -9,11 +9,19 @@ import "element-ui/lib/theme-chalk/index.css"
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store/store'
+import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$http = axios
 Vue.use(VueAxios,axios)
+// Vue.use(VueLazyload)
+Vue.use(VueLazyload,{
+	error:'/static/images/logo.png',
+	loading:'/static/images/loading.gif'
+})
+
+
 
 /* eslint-disable no-new */
 new Vue({

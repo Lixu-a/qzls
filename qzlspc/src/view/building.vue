@@ -100,7 +100,7 @@
 			    		<li v-for="(item, index) in recommendItem.slice(0,4)">
 			    			<router-link v-bind="{to:'/recommendDetail/'+item.id}" v-if="!$route.meta.keepAlive">
 			    			<!-- <router-link to="/home"> -->
-			    				<img :src="item.image" alt="">
+			    				<img v-lazy="item.image" alt="">
 			    				<span>{{item.title}}</span>
 			    			</router-link>
 			    		</li>
