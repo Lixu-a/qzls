@@ -4,14 +4,13 @@
 			<div class="image">
 				<img src="/static/images/house.jpg" alt="">
 				<div class="address">
-					<img src="" alt="">
-					<span class="title">标题</span>
-					<em class="address">地址</em>
+					<i></i>
+					<em>地址</em>
 				</div>
 			</div>
 			<div class="footer">
-				<div class="price">价格</div>
-				<div class="area">面积</div>
+				<div class="price">价格：<em style="color:#FE701A;font-size:22px;">{{listItem.price}}元</em></div>
+				<div class="area">面积：{{listItem.area}}㎡</div>
 			</div>
 		</div>
 	</div>
@@ -30,14 +29,60 @@
 
 <style lang="stylus" scoped>
 	.recommend
-		width:100%
-		height:100px
-		padding-top:100px
+		width:300px
+		height:308px
+		padding:30px 0 15px
+		display:inline-block
 		.recommend-main
-			width:300px
-			height:300px
-			background-color:orange
+			width:100%
+			height:100%
+			box-shadow: 0px 0px 10px  rgba(0,0,0,.5);
+			border-radius:3px
+			&:hover
+				box-shadow: 0px 0px 20px  rgba(0,0,0,.8);
 			.image
 				width:100%
+				height:240px
+				position:relative
+				overflow:hidden
+				img
+					width:100%
+					height:100%
+					transition:all 1s
+					&:hover
+						transform:scale(1.2)
+				.address
+					position:absolute
+					bottom:10px
+					// background-color:rgba(0,0,0,0.1)
+					white-space: nowrap;
+					text-align:left
+					i
+						display:inline-block
+						width:20px
+						height:20px
+						background:url(../assets/images/position.png) no-repeat
+						background-size:100% 100%
+						z-index:100
+					em
+						display:inline-block
+						font-style:normal
+						color:#fff
+						width:260px
+						white-space: nowrap;
+						overflow:hidden
+						text-overflow: ellipsis
+						
+			.footer
+				width:100%
+				height:60px
+				text-align:left
+				font-size:17px
+				.price
+					margin:5px 0 5px 10px
+				.area
+					margin:5px 0 5px 10px
+						
+					
 			
 </style>

@@ -34,7 +34,7 @@
 						<a :href="'tel:'+listItem.phone">{{listItem.phone}}</a>
 					</div>
 					<div class="room-style" v-if="listItem.area">
-						面积：{{listItem.area}}
+						面积：{{listItem.area}}㎡
 					</div>
 					<div class="room-style" v-if="listItem.style">
 						户型：{{listItem.style}}

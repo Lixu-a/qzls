@@ -85,7 +85,7 @@
 		</div>
         <!-- 房子信息列表 -->
         <div class="public-container" style="position:relative;">
-        	<div style="width:880px;" v-for="(item,index) in listItem" :key="index">
+        	<div style="width:880px;" v-for="(item,index) in listItem.slice(0,5)" :key="index">
 	       		<listItem :listItem="item"></listItem>
 	       	</div>
 	       	<!-- 右边推荐列表 -->
@@ -96,7 +96,7 @@
 		    		</em>
 		    	</div>
 		    	<ul class="recommendList">
-		    		<li v-for="(item, index) in listItem">
+		    		<li v-for="(item, index) in recommendItem.slice(0,4)">
 		    			<router-link v-bind="{to:'/detail/'+item.id}">
 		    			<!-- <router-link to="/home"> -->
 		    				<img :src="item.image" alt="">
@@ -184,7 +184,8 @@ import listItem from "../components/list-item"
 					],
 				reqlistItem:[],//从数据库请求的数据
 				oldlistItem:[],
-				listItem:[]
+				listItem:[],
+				recommendItem:[]
 			}
 		},
 		mounted() {
@@ -195,7 +196,9 @@ import listItem from "../components/list-item"
 				this.listItem=res.data.result.slice(0,10);
 				//把获取到的数据在vuex的reqlistItem也存一份
 				this.$store.commit('add',res.data.result);
-			})
+			});
+			//获取推荐列表信息
+			this.recommendItem = this.$store.state.recommendItem;
 		},
 		methods:{
 			// 设置点击改变激活状态

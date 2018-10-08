@@ -3,7 +3,7 @@
     <!-- 头部导航 -->
     <headerNav></headerNav>
     <router-view/>
-    <!-- <footerNav></footerNav> -->
+    <footerNav></footerNav>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ import footerNav from './components/footerNav'
 export default {
   name: 'App',
   components: {
-        // footerNav,
+        footerNav,
         headerNav
   }
 }
@@ -25,6 +25,9 @@ export default {
   }
   a{
     text-decoration: none;
+  }
+  em{
+    font-style: normal;
   }
   .public-container{
     width: 1200px;

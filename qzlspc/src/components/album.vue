@@ -77,6 +77,7 @@
 	.album{
 		width: 100%;
 		padding: 60px 0;
+		
 	}
 	.album-main{
 		background-color: #fff;
