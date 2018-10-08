@@ -16,9 +16,13 @@ Vue.use(ElementUI)
 Vue.prototype.$http = axios
 Vue.use(VueAxios,axios)
 // Vue.use(VueLazyload)
+// Vue.use(VueLazyload,{
+// 	error:'/static/images/logo.png',
+// 	loading:'/static/images/loading.gif'
+// })
 Vue.use(VueLazyload,{
-	error:'/static/images/logo.png',
-	loading:'/static/images/loading.gif'
+	error:require('./assets/images/logo.png'),
+	loading:require('./assets/images/loading.gif')
 })
 
 
