@@ -95,15 +95,17 @@
 		    			<span>热门</span>推荐
 		    		</em>
 		    	</div>
-		    	<ul class="recommendList">
-		    		<li v-for="(item, index) in recommendItem.slice(0,4)">
-		    			<router-link v-bind="{to:'/detail/'+item.id}">
-		    			<!-- <router-link to="/home"> -->
-		    				<img :src="item.image" alt="">
-		    				<span>{{item.title}}</span>
-		    			</router-link>
-		    		</li>
-		    	</ul>
+		    	<keep-alive>
+			    	<ul class="recommendList">
+			    		<li v-for="(item, index) in recommendItem.slice(0,4)">
+			    			<router-link v-bind="{to:'/recommendDetail/'+item.id}" v-if="!$route.meta.keepAlive">
+			    			<!-- <router-link to="/home"> -->
+			    				<img :src="item.image" alt="">
+			    				<span>{{item.title}}</span>
+			    			</router-link>
+			    		</li>
+			    	</ul>
+			    </keep-alive>
 		    </div>
         </div>
        

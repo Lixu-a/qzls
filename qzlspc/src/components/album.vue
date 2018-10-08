@@ -77,7 +77,7 @@
 	.album{
 		width: 100%;
 		padding: 60px 0;
-		
+
 	}
 	.album-main{
 		background-color: #fff;
@@ -119,6 +119,7 @@
 	.album-main .album-images li img{
 		width: 100%;
 		height: 100%;
+		cursor: pointer;
 	}
 	.album-main .album-footer{
 		text-align: center;

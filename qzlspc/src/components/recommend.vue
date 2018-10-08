@@ -2,10 +2,12 @@
 	<div class="recommend">
 		<div class="recommend-main">
 			<div class="image">
-				<img src="/static/images/house.jpg" alt="">
+				<router-link :to="{path:'/recommendDetail/'+listItem.id}">
+					<img src="/static/images/house.jpg" alt="">
+				</router-link>
 				<div class="address">
 					<i></i>
-					<em>地址</em>
+					<em>【{{listItem.region}}】{{listItem.address}}</em>
 				</div>
 			</div>
 			<div class="footer">
@@ -37,14 +39,16 @@
 			width:100%
 			height:100%
 			box-shadow: 0px 0px 10px  rgba(0,0,0,.5);
-			border-radius:3px
+			border-radius:6px
+			border:10px solid #fff
 			&:hover
-				box-shadow: 0px 0px 20px  rgba(0,0,0,.8);
+				box-shadow: 0px 0px 15px  rgba(0,0,0,.8);
 			.image
 				width:100%
 				height:240px
 				position:relative
 				overflow:hidden
+				cursor: pointer
 				img
 					width:100%
 					height:100%

@@ -1,13 +1,16 @@
 <template>
 	<div class="home">
 		<broadcast :imgurl= "imgurlN"></broadcast>
+		<div class="hotTitle public-container">
+			热门推荐
+		</div>
 		<div class="recommend-wrap public-container">
 			<div class="recommendItem" v-for="(item,index) in recommendItem">
 				<recommend :listItem="item"></recommend>
 			</div>
 		</div>
 		<div class="more public-container">
-			查看更多
+			<router-link to="/building">查看更多</router-link>
 		</div>
 		<router-view ></router-view>
 	</div>
@@ -49,16 +52,29 @@ import recommend from '../components/recommend'
 		background-color: #fff;
 		border-radius: 6px;
 		margin: 30px auto;
-		padding: 15px 0 30px;
+		padding: 15px 0 15px;
 	}
 	.recommendItem{
 		display: inline-block;
-		margin: 0 30px;
+		margin: 0 50px 30px 50px;
 	}
-	.more{
-		background-color: #fff;
-		height: 60px;
-		line-height: 60px;
+	.home .hotTitle{
+		height: 50px;
+		line-height: 50px;
+		margin-top: 30px;
 		margin-bottom: 30px;
+		color: #666;
+		font-size: 34px;
+    	font-weight: 700;
+	}
+	.home .more{
+		background-color: #fff;
+		height: 50px;
+		line-height: 50px;
+		margin-bottom: 30px;
+		cursor: pointer;
+	}
+	.home .more a{
+		color: #666;
 	}
 </style>

@@ -4,6 +4,7 @@ import home from '@/view/home'
 import building from '@/view/building'
 import news from '@/view/news'
 import detail from '@/view/detail'
+import recommendDetail from '@/view/recommendDetail'
 
 Vue.use(Router)
 
@@ -13,7 +14,13 @@ export default new Router({
     {path: '/home',component: home},
     {path: '/building',component: building},
     {path: '/news',component: news},
-    {path: '/detail/:id',name:'detail',component: detail}
+    {path: '/detail/:id',name:'detail',component: detail},
+    {path: '/recommendDetail/:id',
+    name:'recommendDetail',
+    component: recommendDetail, 
+    meta: {
+        keepAlive: true // 需要被缓存
+    }}
   ],
   mode:'history'
 })

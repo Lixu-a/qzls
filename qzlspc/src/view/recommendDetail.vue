@@ -74,13 +74,13 @@ import album from "../components/album"
 		},
 		created() {
 			//在reqlistItem里面获取跟此页面相同id的索引
-			let listItemIndex = this.$store.state.reqlistItem.findIndex((item) => {
+			let listItemIndex = this.$store.state.recommendItem.findIndex((item) => {
 				return item.id == this.id; 
 			});
 			//根据索引获取此页面的数据
-			this.listItem = this.$store.state.reqlistItem[listItemIndex];
+			this.listItem = this.$store.state.recommendItem[listItemIndex];
 			//渲染第一张大图
-			this.imageBig = this.$store.state.reqlistItem[listItemIndex].image;
+			this.imageBig = this.$store.state.recommendItem[listItemIndex].image;
 		},
 		methods:{
 			changeImage(e) {
@@ -143,7 +143,6 @@ import album from "../components/album"
 		height: 96px;
 		margin-right: 14px;
 		float: left;
-		cursor: pointer;
 	}
 	.detail-message .msg-left .img-wrap li:nth-child(1){
 		margin-left: -40px;
