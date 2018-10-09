@@ -29,9 +29,9 @@ export default {
   em{
     font-style: normal;
   }
-  img{
+ /* img{
     background-color:rgba(0,0,0,0.1); 
-  }
+  }*/
   img[lazy="loading"]{
     
   }
