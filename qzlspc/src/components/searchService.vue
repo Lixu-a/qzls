@@ -33,7 +33,7 @@
 			        map : map
 			    });
 		    	// this.getResult();
-		    	var poiText = "饭店";
+		    	var poiText = "交通";
 			    var regionText = this.region;
 			    console.log(regionText);
 			    console.log(poiText);
