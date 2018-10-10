@@ -49,6 +49,17 @@
 				    position: myLatlng,
 				    map: map
 				});
+				//更改为自定义图片标注
+				var anchor = new qq.maps.Point(0, 39),
+			         size = new qq.maps.Size(42, 68),
+			         origin = new qq.maps.Point(0, 0),
+			         markerIcon = new qq.maps.MarkerImage(
+			     "https://3gimg.qq.com/lightmap/api_v2/2/4/99/theme/default/imgs/marker.png",
+			     size,
+			     origin,
+			     anchor
+			   );
+			   marker.setIcon(markerIcon);
 				//给定位的位置添加文本标注
 				var marker = new qq.maps.Label({
 				    position: myLatlng,

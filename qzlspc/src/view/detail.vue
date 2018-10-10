@@ -40,7 +40,7 @@
 						户型：{{listItem.style}}
 					</div>
 					<div class="address" v-if="listItem.address">
-						地址：{{listItem.address}}
+						地址：{{listItem.region}} {{listItem.address}}
 					</div>
 				</div>
 			</div>
@@ -48,11 +48,15 @@
 		<div class="photo">
 			<album :imgList="listItem.imgList"></album>
 		</div>
+		<div class="service">
+			<searchService :region="listItem.region"></searchService>
+		</div>
 	</div>
 </template>
 
 <script>
 import album from "../components/album"
+import searchService from "../components/searchService"
 	export default{
 		name:'detail',
 		data() {
@@ -64,7 +68,8 @@ import album from "../components/album"
 			}
 		},
 		components:{
-			album
+			album,
+			searchService
 		},
 		computed: {
 			id(){
