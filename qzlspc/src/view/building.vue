@@ -486,7 +486,7 @@ import listItem from "../components/list-item"
 	}
 	.building .recommend .title em{
 		font-size: 18px;
-	    color: #FF5454;
+	    color: rgb(254, 112, 26);
 	    font-weight: 600;
 	    font-style: normal;
 	}

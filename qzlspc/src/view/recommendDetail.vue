@@ -182,7 +182,7 @@ import searchService from "../components/searchService"
 	.detail-message .msg-right .price em{
 		font-style: normal;
 		font-size: 24px;
-	    color: #FF5454;
+	    color: rgb(254, 112, 26);
 	    display: inline-block;
 	    font-weight: 600;
 	}

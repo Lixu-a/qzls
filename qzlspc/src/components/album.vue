@@ -54,7 +54,7 @@
 					this.images = this.imgList;
 					//滚动条向下滚动
 					this.$nextTick(() => {
-						document.documentElement.scrollTop=880;
+						document.documentElement.scrollTop=800;
 					});
 				}else{
 					this.images = this.imgList.slice(0,5);

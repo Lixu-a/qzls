@@ -2,10 +2,17 @@
 	<div class="news">
 		<div id="container" style="width:100%;height:500px;"></div>
 		<div id="wrap"></div>
+		<div class="dynamic-wrap public-container" style="text-align:left;">
+			<div class="big-title">
+				楼市动态
+			</div>
+			<dynamic></dynamic>
+		</div>
 	</div>
 </template>
 
 <script>
+import dynamic from '../components/dynamic'
 	export default{
 		name:'news',
 		data() {
@@ -14,6 +21,9 @@
 				latitude:24.88946,//纬度
 				city:''
 			}
+		},
+		components:{
+			dynamic
 		},
 		methods:{
 			//实现定位当前位置
@@ -89,5 +99,20 @@
 	}
 	.btn{
 	    width:112px;
+	}
+	.dynamic-wrap{
+		border-radius: 10px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.dynamic-wrap .big-title{
+		border-bottom: 1px solid #E6E6E6;
+	    font-size: 20px;
+	    color: #3C4759;
+	    font-weight: 600;
+	    width: 860px;
+	    margin: auto 0;
+	    padding: 20px;
+	    background-color: #fff;
 	}
 </style>
