@@ -5,6 +5,7 @@ import building from '@/view/building'
 import news from '@/view/news'
 import detail from '@/view/detail'
 import recommendDetail from '@/view/recommendDetail'
+import dynamicDetail from '@/view/dynamicDetail'
 
 Vue.use(Router)
 
@@ -20,7 +21,8 @@ export default new Router({
     component: recommendDetail, 
     meta: {
         keepAlive: true // 需要被缓存
-    }}
+    }},
+    {path: '/dynamicDetail/:id',component: dynamicDetail}
   ],
   mode:'history'
 })

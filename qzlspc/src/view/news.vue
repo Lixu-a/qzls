@@ -6,7 +6,9 @@
 			<div class="big-title">
 				楼市动态
 			</div>
-			<dynamic></dynamic>
+			<div v-for="(item,index) in dynamic" :key="index">
+				<dynamic :dynamic="item"></dynamic>
+			</div>
 		</div>
 	</div>
 </template>
@@ -19,7 +21,8 @@ import dynamic from '../components/dynamic'
 			return {
 				longitude:118.613,//经度
 				latitude:24.88946,//纬度
-				city:''
+				city:'',
+				dynamic:[]
 			}
 		},
 		components:{
@@ -76,11 +79,16 @@ import dynamic from '../components/dynamic'
 				    map: map,
 				    content:'泉州楼市，你的楼市'
 				});
-		  	}
+		  	},
 		  },
 		  mounted() {
 			this.getMyLocation();
 			// document.getElementById("wrap").scrollIntoView();
+			//请求新闻数据
+			this.axios.get("/static/lib/news.json").then(res=>{
+				this.dynamic = Object.assign([],res.data.result);
+				this.$store.commit('dynamicTotal',res.data.result);
+			});
 		 }
 		}
 </script>

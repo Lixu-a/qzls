@@ -8,7 +8,8 @@ export default new Vuex.Store({
 		//屋子列表信息数据
 		reqlistItem:[],
 		//推荐列表数据
-		recommendItem:[]
+		recommendItem:[],
+		dynamicTotal:[]
 	},
 	mutations:{
 		//保存一份请求的房子列表数据
@@ -17,6 +18,9 @@ export default new Vuex.Store({
 		},
 		recommendItem:(state,n) => {
 			state.recommendItem = Object.assign(n);
+		},
+		dynamicTotal:(state,n) => {
+			state.dynamicTotal = Object.assign(n);
 		}
 	},
 	actions:{

@@ -2,23 +2,28 @@
 	<div class="dynamic">
 		<div class="time">
 			<span>
-				2018-09
+				{{dynamic.year}}
 			</span>
-			<em>09</em>
+			<em>{{dynamic.date}}</em>
 		</div>
 		<div class="title">
-			<router-link to="/home">碧桂园二期预计10月开盘 均价13500元/㎡</router-link>
+			<router-link v-bind="{to:'/dynamicDetail/'+dynamic.id}">{{dynamic.title}}</router-link>
 			<div class="content">
-				在一个热闹的集市上，一个卖鱼的喊道：“鲜鱼!”这时，一个卖泡泡糖的紧接着喊：“泡糖! (泡汤)”那个卖鱼的听了，对那个卖糖的人说：“哎，你为什么说我的鱼泡汤了啊?”他们越吵越凶。就在这时，一个卖豆芽的又喊道：“豆芽! (斗呀)”一位治安员走了过来问：“还有谁在和他们吵架啊?”正巧一位卖油果的喊道：“油果! (有我)”治安员听了以后说：“那好，把你们四个一并带走!”
+				{{dynamic.content}}
 			</div>
-			<router-link to="/home" class="more">查看详情</router-link>
+			<router-link v-bind="{to:'/dynamicDetail/'+dynamic.id}" class="more">查看详情</router-link>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default{
-		name:'dynamic'
+		name:'dynamic',
+		props:{
+			dynamic:{
+				type:Object
+			}
+		}
 	}
 </script>
 
@@ -28,6 +33,7 @@
     	background: #fff;
     	padding: 20px;
     	font-size: 0;
+    	margin-bottom: 30px;
 	}
 	.dynamic .time{
 		width: 100px;
