@@ -6,6 +6,8 @@ import news from '@/view/news'
 import detail from '@/view/detail'
 import recommendDetail from '@/view/recommendDetail'
 import dynamicDetail from '@/view/dynamicDetail'
+import login from '@/view/login'
+import user from '@/view/user'
 
 Vue.use(Router)
 
@@ -22,7 +24,9 @@ export default new Router({
     meta: {
         keepAlive: true // 需要被缓存
     }},
-    {path: '/dynamicDetail/:id',component: dynamicDetail}
+    {path: '/dynamicDetail/:id',component: dynamicDetail},
+    {path: '/login',component: login},
+    {path: '/user',component: user},
   ],
   mode:'history'
 })

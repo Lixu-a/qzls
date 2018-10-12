@@ -23,6 +23,10 @@
 					<div class="title">泉州楼市</div>
 				</router-link>
 			</div>
+			<div class="login">
+				<router-link v-if="!islogin" to="/login">登录</router-link>
+				<router-link v-if="islogin" to="/user">我的昵称</router-link>
+			</div>
 		</div>
 	</div>
 </template>
@@ -30,6 +34,11 @@
 <script>
   export default {
   	name:"headerNav",
+  	props:{
+  		islogin:{
+  			type:Boolean
+  		}
+  	},
     data() {
       return {
         activeIndex: '1',
@@ -85,5 +94,19 @@
 	}
 	.logo a{
 		color: #2C3E50;
+	}
+	.login{
+		position: absolute;
+		right: 20px;
+		top: 0px;
+		height: 60px;
+		line-height: 60px;
+	}
+	.login a{
+		color: #999;
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0 15px;
 	}
 </style>

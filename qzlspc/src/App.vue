@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 头部导航 -->
-    <headerNav></headerNav>
+    <headerNav :islogin="islogin"></headerNav>
     <router-view/>
     <footerNav></footerNav>
   </div>
@@ -15,6 +15,28 @@ export default {
   components: {
         footerNav,
         headerNav
+  },
+  data() {
+    return {
+      
+    }
+  },
+  computed:{
+    //判断是否有登录标志islogin
+    islogin() {
+      let islogin = JSON.parse(localStorage.getItem('islogin'));
+        if (islogin == true) {
+          return true;
+        }else{
+          return false;
+        }
+    }
+  },
+  methods:{
+
+  },
+  mounted() {
+    
   }
 }
 </script>

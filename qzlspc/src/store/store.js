@@ -9,7 +9,10 @@ export default new Vuex.Store({
 		reqlistItem:[],
 		//推荐列表数据
 		recommendItem:[],
-		dynamicTotal:[]
+		//新闻动态数据
+		dynamicTotal:[],
+		//是否登录判断
+		islogin:''
 	},
 	mutations:{
 		//保存一份请求的房子列表数据
