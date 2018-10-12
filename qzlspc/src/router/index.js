@@ -15,18 +15,20 @@ export default new Router({
   routes: [
     {path: '/',redirect: '/home'},
     {path: '/home',component: home},
-    {path: '/building',component: building,meta:{requireAuth:true}},
+    {path: '/building',component: building},
     {path: '/news',component: news},
-    {path: '/detail/:id',name:'detail',component: detail},
+    {path: '/detail/:id',name:'detail',component: detail,meta:{requireAuth:true}},
     {path: '/recommendDetail/:id',
     name:'recommendDetail',
     component: recommendDetail, 
     meta: {
-        keepAlive: true // 需要被缓存
+        keepAlive: true, // 需要被缓存
+        requireAuth:true
     }},
-    {path: '/dynamicDetail/:id',component: dynamicDetail},
+    {path: '/dynamicDetail/:id',component: dynamicDetail,meta:{requireAuth:true}},
     {path: '/login',component: login},
     {path: '/user',component: user},
   ],
   mode:'history'
 })
+
