@@ -63,8 +63,8 @@
 	            console.log("提交成功");
 	            //提交成功之后操作
 	            let flag = true;
-	            let islogin = localStorage.setItem('islogin',JSON.stringify(flag));
-	            this.$router.push("/home");
+	            this.$store.commit("login",flag);
+	            this.$router.push('/home');
 	          } else {
 	            console.log('error submit!!');
 	            return false;

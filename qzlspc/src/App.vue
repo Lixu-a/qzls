@@ -24,12 +24,7 @@ export default {
   computed:{
     //判断是否有登录标志islogin
     islogin() {
-      let islogin = JSON.parse(localStorage.getItem('islogin'));
-        if (islogin == true) {
-          return true;
-        }else{
-          return false;
-        }
+      return this.$store.state.islogin;
     }
   },
   methods:{

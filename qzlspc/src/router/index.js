@@ -15,7 +15,7 @@ export default new Router({
   routes: [
     {path: '/',redirect: '/home'},
     {path: '/home',component: home},
-    {path: '/building',component: building},
+    {path: '/building',component: building,meta:{requireAuth:true}},
     {path: '/news',component: news},
     {path: '/detail/:id',name:'detail',component: detail},
     {path: '/recommendDetail/:id',

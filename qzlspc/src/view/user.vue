@@ -10,8 +10,8 @@
 		methods:{
 			exit() {
 				let flag = false
-				localStorage.setItem("islogin",JSON.stringify(flag));
-				this.$router.push("/home");
+				this.$store.commit('login',flag);
+				this.$router.push("/login");
 				console.log("退出登录");
 			}
 		}
