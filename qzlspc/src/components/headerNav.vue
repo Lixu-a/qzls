@@ -25,7 +25,7 @@
 			</div>
 			<div class="login">
 				<router-link v-show="!islogin" to="/login">登录</router-link>
-				<router-link v-show="islogin" to="/user">欢迎您，{{nickname}}</router-link>
+				<router-link v-show="islogin" to="/user" v-if="nickname">欢迎您，{{nickname}}</router-link>
 			</div>
 		</div>
 	</div>

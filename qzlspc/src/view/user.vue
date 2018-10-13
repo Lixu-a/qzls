@@ -38,24 +38,29 @@
 				    			 设置昵称：
 				    			<input type="text" ref="nickname">
 				    		</label>
-				    		<div><span @click="nickFun()">确认修改</span></div>
+				    		<div>
+				    			<input @click="nickFun()" type="button" value="确认修改">
+				    		</div>
 				    	</div>
 				    </el-tab-pane>
 				    <el-tab-pane label="修改密码" name="third">
 					    <div class="password">
 					    	<label>
 				    			 输入旧密码：
-				    			<input type="text" ref="oldpass">
+				    			<input type="text" v-model="oldpass">
 				    		</label>
 				    		<label>
 				    			 设置新密码：
-				    			<input type="text" ref="newpass">
+				    			<input type="password" v-model="newpass">
 				    		</label>
 				    		<label>
 				    			 确认新密码：
-				    			<input type="text" ref="newpass2">
+				    			<input type="password" v-model="newpass2">
 				    		</label>
-				    		<div><span>确认修改</span></div>
+				    		<div>
+				    			<input @click="checkPass()" type="button" value="确认修改">
+				    		</div>
+				    		{{oldpass}}-{{newpass}}-{{newpass2}}
 					    </div>
 				    </el-tab-pane>
 			  	</el-tabs>
@@ -84,7 +89,10 @@
 				//用户头像上传
 				imageUrl:'/static/images/default-avatar.png',
 				//标签页
-				activeName: 'first'
+				activeName: 'first',
+				oldpass:'',
+				newpass:'',
+				newpass2:''
 			}
 		},
 		methods:{
@@ -121,20 +129,72 @@
 		          message: '头像上传失败',
 		          type: 'warning'
 		        });
-		        return isJPG  && isLt2M;
+		        return isJPG && isLt2M;
 		      },
 		      // 标签页
 		      handleClick(tab, event) {
 		        console.log(tab, event);
 		      },
+		      //昵称修改
 		      nickFun() {
 		      	let nickname= this.$refs.nickname.value;
+		      	if (nickname =='' || nickname == null || nickname == undefined) {
+		      		this.$message({
+			          message: '昵称不能为空',
+			          type: 'warning'
+			        });
+		      		return
+		      	}
 		      	this.nickname = nickname;
 		      	this.$store.commit('nick',nickname);
 		      	this.$message({
 		          message: '昵称修改成功',
 		          type: 'success'
 		        });
+		      },
+		      //密码修改
+		      checkPass() {
+		      	//判断是否为空
+		      	if (this.oldpass == '' || this.oldpass == null || this.oldpass == undefined) {
+		      		this.$message({
+			          message: '请输入旧密码',
+			          type: 'warning'
+			        });
+			        return
+		      	}
+		      	if (this.newpass == '' || this.newpass == null || this.newpass == undefined) {
+		      		this.$message({
+			          message: '请输入新密码',
+			          type: 'warning'
+			        });
+			        return
+		      	}
+		      	if (this.newpass2 == '' || this.newpass2 == null || this.newpass2 == undefined) {
+		      		this.$message({
+			          message: '请再次输入新密码',
+			          type: 'warning'
+			        });
+			        return
+		      	}
+		      	if (this.newpass !== this.newpass2) {
+		      		this.$message({
+			          message: '两次密码输入不一致',
+			          type: 'warning'
+			        });
+			        return
+		      	}
+		      	//判断两次的新密码输入是否一样
+		      	if (this.newpass == this.newpass2) {
+		      		//把旧密码发送后端验证，判断旧密码是否输入正确,正确保存新密码，不正确返回值
+		      		//修改成功重新登录
+		      		let flag = false;
+		      		this.$store.commit('login',flag);
+		      		this.$router.push('/login');
+		      		this.$message({
+		      			message:"密码修改成功,请重新登录",
+		      			type:'success'
+		      		});
+		      	}
 		      }
 		},
 		mounted() {
@@ -233,7 +293,7 @@
 		display: block;
 		text-align: center;
 	}
-	.head-label .nick div span{
+	.head-label .nick div input{
 		display: inline-block;
 		width: 250px;
 		height: 40px;
@@ -241,6 +301,10 @@
 		margin-top: 20px;
 		color: rgba(255,255,255,0.9);
 		background-color: #FE701A;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		font-size: 18px;
 	}
 	/*密码修改*/
 	.head-label .password{
@@ -262,7 +326,7 @@
 		display: block;
 		text-align: center;
 	}
-	.head-label .password div span{
+	.head-label .password div input{
 		display: inline-block;
 		width: 250px;
 		height: 40px;
@@ -270,6 +334,10 @@
 		margin-top: 20px;
 		color: rgba(255,255,255,0.9);
 		background-color: #FE701A;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		font-size: 18px;
 	}
 	/*用户头像上传*/
 	.avatar-uploader .el-upload {
