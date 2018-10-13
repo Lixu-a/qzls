@@ -24,8 +24,8 @@
 				</router-link>
 			</div>
 			<div class="login">
-				<router-link v-if="!islogin" to="/login">登录</router-link>
-				<router-link v-if="islogin" to="/user">我的昵称</router-link>
+				<router-link v-show="!islogin" to="/login">登录</router-link>
+				<router-link v-show="islogin" to="/user">我的昵称</router-link>
 			</div>
 		</div>
 	</div>
@@ -36,7 +36,8 @@
   	name:"headerNav",
   	props:{
   		islogin:{
-  			type:Boolean
+  			type:Boolean,
+  			default:false
   		}
   	},
     data() {
@@ -49,6 +50,9 @@
     	handleSelect() {
 
     	}
+    },
+    mounted() {
+    	console.log(this.islogin);
     }
   }
 </script>

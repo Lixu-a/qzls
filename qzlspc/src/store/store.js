@@ -12,7 +12,7 @@ export default new Vuex.Store({
 		//新闻动态数据
 		dynamicTotal:[],
 		//是否登录判断
-		islogin:''
+		islogin:false
 	},
 	mutations:{
 		//保存一份请求的房子列表数据

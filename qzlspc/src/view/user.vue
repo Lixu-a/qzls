@@ -58,7 +58,7 @@
 		background-color: #fff;
 		border: 1px solid #e6e5e5;
 		border-radius: 3px;
-		box-shadow: 0px 0px 20px  rgba(0,0,0,.1);
+		box-shadow: 0px 0px 20px rgba(0,0,0,.1);
 	}
 	.user .head{
 		width: 100%;
@@ -75,7 +75,8 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		margin-top: 10px;
+		margin-top: 15px;
+		margin-bottom: 14px;
 		font-weight: 600;
 	}
 	.user .tabPanel{
@@ -83,14 +84,19 @@
 	}
 	.user .tabPanel li{
 		cursor: pointer;
-		margin: 10px 0;  
+		padding: 14px 0;  
+	}
+	.user .tabPanel li:hover{
+		color: #FE701A;
 	}
 	/*这里是展示区域*/
 	.exhibition{
-		background-color: #fff;
-		border-radius: 3px;
 		width: 1000px;
-		height: 500px;
+		/*height: 600px;*/
 		margin-left: 30px;
+		background-color: #fff;
+		border: 1px solid #e6e5e5;
+		border-radius: 3px;
+		box-shadow: 0px 0px 20px rgba(0,0,0,.1);
 	}
 </style>
