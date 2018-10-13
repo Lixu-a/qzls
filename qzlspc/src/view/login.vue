@@ -4,7 +4,7 @@
 		<div class="login" v-show="flag">
 			<div class="login-title">登录</div>
 			<el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="login-ruleForm">
-			  <el-form-item label="账号" prop="count2">
+			  <el-form-item label="账号" prop="count2" >
 			    <el-input type="string" v-model="ruleForm2.count2" placeholder="请输入您的账号"></el-input>
 			  </el-form-item>
 			  <el-form-item label="密码" prop="pass2">
@@ -18,7 +18,7 @@
 			<div @click="register()" class="toregister" >没有账号？<span>立即注册</span></div>
 		</div>
 		<!-- 注册 -->
-		<div class="register" v-show="!flag">
+		<div class="register" v-if="!flag">
 			<div class="register-title">注册</div>
 			<el-form :model="ruleForm1" status-icon :rules="rules1" ref="ruleForm1" label-width="100px" class="register-ruleForm">
 			  <el-form-item label="账号" prop="count1">
@@ -103,8 +103,8 @@
 	      	flag:true,//登录注册切换
 	      	//登录账号密码
 	        ruleForm2: {
-	          pass2: '',
-	          count2:''
+	          count2:'',
+	          pass2: ''
 	        },
 	        //登录验证
 	        rules2: {
@@ -147,6 +147,9 @@
 		          message: '恭喜，登录成功',
 		          type: 'success'
 		        });
+		        //获取昵称并设置昵称
+		        let nickname = 'admin';
+		        this.$store.commit("nick",nickname);
 	          } else {
 	            this.$message({
 		          message: '抱歉，登录失败',
@@ -187,6 +190,9 @@
 		    	this.flag = !this.flag;
 		    }
 	    },
+	    mounted() {
+	    	
+	    }
 	  }
 </script>
 

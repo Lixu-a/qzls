@@ -12,7 +12,9 @@ export default new Vuex.Store({
 		//新闻动态数据
 		dynamicTotal:[],
 		//是否登录判断
-		islogin:false
+		islogin:'',
+		//昵称修改
+		nickname:''
 	},
 	mutations:{
 		//保存一份请求的房子列表数据
@@ -31,7 +33,14 @@ export default new Vuex.Store({
 			localStorage.setItem('islogin',JSON.stringify(islogin));
 			console.log(islogin);
 			state.islogin = islogin;
-		} 
+		},
+		nick:(state,n) => {
+			//传入修改后的昵称
+			let nickname = n;
+			localStorage.setItem('nickname',JSON.stringify(nickname));
+			console.log("nickname:"+nickname);
+			state.nickname = nickname;
+		}
 	},
 	actions:{
 

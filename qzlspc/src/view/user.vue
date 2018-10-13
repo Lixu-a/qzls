@@ -2,32 +2,72 @@
 	<div class="user public-container">
 		<!-- 左边选项卡 -->
 		<div class="tab">
-			<div class="head">
-				<img src="/static/images/default-avatar.png" alt="">
+			<div class="head" >
+				<img @click="exhiFun($event)" data-exhi="1" :src="imageUrl" alt="">
 			</div>
 			<div class="nickname">
-				欢迎您，我的昵称
+				{{nickname}}
 			</div>
 			<ul class="tabPanel">
-				<li class="home">首页</li>
-				<li class="collection">我的收藏</li>
-				<li class="edit">编辑资料</li>
-				<li class="exit" @click="exit()">退出登录</li>
+				<!-- <li class="home" @click="exhiFun($event)" data-exhi="2">首页</li> -->
+				<!-- <li class="collection" @click="exhiFun($event)" data-exhi="3">我的收藏</li> -->
+				<li class="edit" @click="exhiFun($event)" data-exhi="4">编辑资料</li>
+				<li class="exit" @click="exitFun()">退出登录</li>
 			</ul>
 		</div>
 		<!-- 右边面板 -->
 		<div class="exhibition">
-			<div class="head-exhi">
-				这里是展示区域
+			<div class="head-exhi" v-show="exhi == 1">
+				<!-- 标签页 -->
+				<el-tabs v-model="activeName" @tab-click="handleClick" class="head-label">
+				    <el-tab-pane label="修改头像" name="first">
+				    <!-- 图片上传 -->
+				    	<el-upload
+						  class="avatar-uploader"
+						  action="https://jsonplaceholder.typicode.com/posts/"
+						  :show-file-list="false"
+						  :on-success="handleAvatarSuccess"
+						  :before-upload="beforeAvatarUpload">
+						  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+						</el-upload>
+				    </el-tab-pane>
+				    <el-tab-pane label="修改昵称" name="second">
+				    	<div class="nick">
+				    		<label>
+				    			 设置昵称：
+				    			<input type="text" ref="nickname">
+				    		</label>
+				    		<div><span @click="nickFun()">确认修改</span></div>
+				    	</div>
+				    </el-tab-pane>
+				    <el-tab-pane label="修改密码" name="third">
+					    <div class="password">
+					    	<label>
+				    			 输入旧密码：
+				    			<input type="text" ref="oldpass">
+				    		</label>
+				    		<label>
+				    			 设置新密码：
+				    			<input type="text" ref="newpass">
+				    		</label>
+				    		<label>
+				    			 确认新密码：
+				    			<input type="text" ref="newpass2">
+				    		</label>
+				    		<div><span>确认修改</span></div>
+					    </div>
+				    </el-tab-pane>
+			  	</el-tabs>
 			</div>
-			<div class="home-exhi">
-				
+			<div class="home-exhi" v-show="exhi == 2">
+				这里是展示区域home-exhi
 			</div>
-			<div class="collection-exhi">
-				
+			<div class="collection-exhi" v-show="exhi == 3">
+				这里是展示区域collection-exhi
 			</div>
-			<div class="edit-exhi">
-				
+			<div class="edit-exhi" v-show="exhi == 4">
+				这里是展示区域edit-exhi
 			</div>
 		</div>
 	</div>
@@ -36,13 +76,69 @@
 <script>
 	export default{
 		name:'user',
+		data() {
+			return {
+				//切换展示哪一个
+				exhi:1,
+				nickname:'我的昵称',
+				//用户头像上传
+				imageUrl:'/static/images/default-avatar.png',
+				//标签页
+				activeName: 'first'
+			}
+		},
 		methods:{
-			exit() {
+			exitFun() {
 				let flag = false
 				this.$store.commit('login',flag);
 				this.$router.push("/login");
 				console.log("退出登录");
-			}
+			},
+			exhiFun(e) {
+				this.exhi = e.target.dataset.exhi;
+				console.log(this.exhi);
+			},
+			//用户头像上传
+			handleAvatarSuccess(res, file) {
+		        this.imageUrl = URL.createObjectURL(file.raw);
+		        console.log(this.imageUrl);
+		        this.$message({
+		          message: '头像上传成功',
+		          type: 'success'
+		        });
+		      },
+		      beforeAvatarUpload(file) {
+		        const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+		        const isLt2M = file.size / 1024 / 1024 < 2;
+
+		        if (!isJPG) {
+		          this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+		        }
+		        if (!isLt2M) {
+		          this.$message.error('上传头像图片大小不能超过 2MB!');
+		        }
+		        this.$message({
+		          message: '头像上传失败',
+		          type: 'warning'
+		        });
+		        return isJPG  && isLt2M;
+		      },
+		      // 标签页
+		      handleClick(tab, event) {
+		        console.log(tab, event);
+		      },
+		      nickFun() {
+		      	let nickname= this.$refs.nickname.value;
+		      	this.nickname = nickname;
+		      	this.$store.commit('nick',nickname);
+		      	this.$message({
+		          message: '昵称修改成功',
+		          type: 'success'
+		        });
+		      }
+		},
+		mounted() {
+
 		}
 	}
 </script>
@@ -68,6 +164,7 @@
 	.user .head img{
 		width: 80px;
 		height: 80px;
+		cursor: pointer;
 	}
 	.user .nickname{
 		width: 130px;
@@ -99,4 +196,103 @@
 		border-radius: 3px;
 		box-shadow: 0px 0px 20px rgba(0,0,0,.1);
 	}
+	.exhibition .head-exhi,
+	.exhibition .home-exhi,
+	.exhibition .collection-exhi,
+	.exhibition .edit-exhi
+	{
+		width: 100%;
+		height: 100%;
+	}
+	/*head-label*/
+	.head-label{
+		width: 90%;
+		margin: 30px auto;
+	}
+	.head-label .avatar-uploader{
+		width: 178px;
+		background-color: rgba(0,0,0,0.05);
+	}
+	/*昵称修改*/
+	.head-label .nick{
+		font-size: 18px;
+		text-align: center;
+	}
+	.head-label .nick label{
+		display: block;
+		margin-left: -96px;
+		margin-top: 30px;
+	}
+	.head-label .nick label input{
+		width: 244px;
+		height: 40px;
+		font-size: 17px;
+		outline: none;
+	}
+	.head-label .nick div{
+		display: block;
+		text-align: center;
+	}
+	.head-label .nick div span{
+		display: inline-block;
+		width: 250px;
+		height: 40px;
+		line-height: 40px;
+		margin-top: 20px;
+		color: rgba(255,255,255,0.9);
+		background-color: #FE701A;
+	}
+	/*密码修改*/
+	.head-label .password{
+		font-size: 18px;
+		text-align: center;
+	}
+	.head-label .password label{
+		display: block;
+		margin-left: -114px;
+		margin-top: 30px;
+	}
+	.head-label .password label input{
+		width: 244px;
+		height: 40px;
+		font-size: 17px;
+		outline: none;
+	}
+	.head-label .password div{
+		display: block;
+		text-align: center;
+	}
+	.head-label .password div span{
+		display: inline-block;
+		width: 250px;
+		height: 40px;
+		line-height: 40px;
+		margin-top: 20px;
+		color: rgba(255,255,255,0.9);
+		background-color: #FE701A;
+	}
+	/*用户头像上传*/
+	.avatar-uploader .el-upload {
+	    border: 1px dashed #d9d9d9;
+	    border-radius: 6px;
+	    cursor: pointer;
+	    position: relative;
+	    overflow: hidden;
+	  }
+	  .avatar-uploader .el-upload:hover {
+	    border-color: #409EFF;
+	  }
+	  .avatar-uploader-icon {
+	    font-size: 28px;
+	    color: #8c939d;
+	    width: 178px;
+	    height: 178px;
+	    line-height: 178px;
+	    text-align: center;
+	  }
+	  .avatar {
+	    width: 178px;
+	    height: 178px;
+	    display: block;
+	  }
 </style>

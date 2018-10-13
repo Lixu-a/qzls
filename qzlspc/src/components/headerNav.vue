@@ -25,7 +25,7 @@
 			</div>
 			<div class="login">
 				<router-link v-show="!islogin" to="/login">登录</router-link>
-				<router-link v-show="islogin" to="/user">我的昵称</router-link>
+				<router-link v-show="islogin" to="/user">欢迎您，{{nickname}}</router-link>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,8 @@
   		islogin:{
   			type:Boolean,
   			default:false
-  		}
+  		},
+  		nickname:''
   	},
     data() {
       return {
@@ -53,6 +54,7 @@
     },
     mounted() {
     	console.log(this.islogin);
+    	console.log(this.nickname);
     }
   }
 </script>

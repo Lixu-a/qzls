@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 头部导航 -->
-    <headerNav :islogin="islogin"></headerNav>
+    <headerNav :islogin="islogin" :nickname="nickname"></headerNav>
     <router-view/>
     <footerNav></footerNav>
   </div>
@@ -25,13 +25,18 @@ export default {
     //判断是否有登录标志islogin
     islogin() {
       return this.$store.state.islogin;
+    },
+    nickname() {
+      return this.$store.state.nickname;
     }
   },
   methods:{
 
   },
   mounted() {
-    
+    //初始化islogin为false，表示未登录
+    let flag = false;
+    this.$store.commit("login",flag);
   }
 }
 </script>
@@ -82,5 +87,18 @@ export default {
   .el-pagination.is-background .el-pager li:not(.disabled).active {
       background-color: #FC8C49 !important;
       color: #fff;
+  }
+  /*user.vue标签页颜色*/
+  .user .el-tabs__item.is-active{
+    color: #FE701A !important;
+  }
+  .user .el-tabs__active-bar{
+    background-color: #FE701A !important;
+  }
+  .user .el-tabs__item:hover{
+    color: #FE701A !important;
+  }
+  .user .el-tabs__item{
+    font-size: 16px;
   }
 </style>
