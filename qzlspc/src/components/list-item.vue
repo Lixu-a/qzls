@@ -57,6 +57,7 @@
 	.building-list ul{
 		/*font-size: 0;*/
 		width: 880px;
+		margin-top: 30px;
 	}
 	.building-list ul li {
 	    width: 880px;
@@ -64,7 +65,7 @@
 	    background: #FFF;
 	    margin-bottom: 20px;
 	    border-radius: 3px;
-	    margin-left: -40px;
+	    /*margin-left: -40px;*/
 	    position: relative;
 	}
 	.building-list ul li:hover {

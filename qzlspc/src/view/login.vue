@@ -1,7 +1,7 @@
 <template>
 	<div class="logReg">
 	<!-- 登录 -->
-		<div class="login" v-if="flag">
+		<div class="login" v-show="flag">
 			<div class="login-title">登录</div>
 			<el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="login-ruleForm">
 			  <el-form-item label="账号" prop="count2">
@@ -18,17 +18,17 @@
 			<div @click="register()" class="toregister" >没有账号？<span>立即注册</span></div>
 		</div>
 		<!-- 注册 -->
-		<div class="register" v-if="!flag">
-			<div class="login-title">注册</div>
-			<el-form :model="ruleForm1" status-icon :rules="rules1" ref="ruleForm1" label-width="100px" class="demo-ruleForm">
+		<div class="register" v-show="!flag">
+			<div class="register-title">注册</div>
+			<el-form :model="ruleForm1" status-icon :rules="rules1" ref="ruleForm1" label-width="100px" class="register-ruleForm">
 			  <el-form-item label="账号" prop="count1">
 			    <el-input type="string" v-model="ruleForm1.count1" placeholder="请输入您的账号"></el-input>
 			  </el-form-item>
 			  <el-form-item label="密码" prop="pass1">
-			    <el-input type="password" v-model="ruleForm1.pass1" autocomplete="off"></el-input>
+			    <el-input type="password" v-model="ruleForm1.pass1" autocomplete="off" placeholder="请输入您的密码"></el-input>
 			  </el-form-item>
 			  <el-form-item label="确认密码" prop="checkPass">
-			    <el-input type="password" v-model="ruleForm1.checkPass" autocomplete="off"></el-input>
+			    <el-input type="password" v-model="ruleForm1.checkPass" autocomplete="off" placeholder="请确认您的密码"></el-input>
 			  </el-form-item>
 			  <el-form-item>
 			    <el-button type="primary" @click="submitForm1('ruleForm1')">提交</el-button>
@@ -90,24 +90,15 @@
 	        }
 	      };
 	      //注册密码确认
-	      // var validatePassCheck = (rule, value, callback) => {
-	      //   if (value === '') {
-	      //     callback(new Error('请再次输入密码'));
-	      //   } else if (value !== this.ruleForm1.pass1) {
-	      //     callback(new Error('两次输入密码不一致!'));
-	      //   } else {
-	      //     callback();
-	      //   }
-	      // };
 	      var validatePassCheck = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm1.pass1) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
+	        if (value === '') {
+	          callback(new Error('请再次输入密码'));
+	        } else if (value !== this.ruleForm1.pass1) {
+	          callback(new Error('两次输入密码不一致!'));
+	        } else {
+	          callback();
+	        }
+	      };
 	      return {
 	      	flag:true,//登录注册切换
 	      	//登录账号密码
@@ -138,7 +129,7 @@
 	          ],
 	          checkPass: [
 	            { validator: validatePassCheck, trigger: 'blur' }
-	          ],
+	          ]
 	        },
 	      };
 	    },
@@ -152,8 +143,15 @@
 	            let flag = true;
 	            this.$store.commit("login",flag);
 	            this.$router.push('/home');
+	            this.$message({
+		          message: '恭喜，登录成功',
+		          type: 'success'
+		        });
 	          } else {
-	            console.log('error submit!!');
+	            this.$message({
+		          message: '抱歉，登录失败',
+		          type: 'warning'
+		        });
 	            return false;
 	          }
 	        });
@@ -162,16 +160,25 @@
 	      resetForm2(formName) {
 	        this.$refs[formName].resetFields();
 	      },
+	      //注册提交
 	      submitForm1(formName) {
 	        this.$refs[formName].validate((valid) => {
 	          if (valid) {
-	            alert('submit!');
+	            this.$message({
+		          message: '恭喜，注册成功，请登录',
+		          type: 'success'
+		        });
+	            this.flag = !this.flag;
 	          } else {
-	            console.log('error submit!!');
+	            this.$message({
+		          message: '抱歉，注册失败',
+		          type: 'warning'
+		        });
 	            return false;
 	          }
 	        });
 	      },
+	      //注册框重置
 	      resetForm1(formName) {
 	        this.$refs[formName].resetFields();
 	      },
@@ -209,6 +216,7 @@
 	    background-color: rgba(254, 112, 26, 0.8);
 	    border-color: rgba(254, 112, 26, 0.9);
 	}
+	.register,
 	.login{
 		margin-top: 100px;
 		margin-bottom: 100px;
@@ -219,6 +227,7 @@
 		border-radius: 8px;
 		box-shadow: 0px 0px 100px  rgba(0,0,0,.1);
 	}
+	.register .register-title,
 	.login .login-title{
 		font-size: 1.65rem;
 	    line-height: 60px;
@@ -228,6 +237,7 @@
 	    color: #555;
 /*	    color: rgba(254, 112, 26, 0.8);*/
 	}
+	.register-ruleForm,
 	.login-ruleForm{
 		width: 500px;
 		margin: 0 auto;
@@ -237,14 +247,4 @@
 		cursor: pointer;
 	}
 	/*注册*/
-	.register{
-		margin-top: 100px;
-		margin-bottom: 100px;
-		padding: 40px 0px 40px 0;
-		background-color: #fff;
-		width: 600px;
-		margin: 100px auto;
-		border-radius: 8px;
-		box-shadow: 0px 0px 100px  rgba(0,0,0,.1);
-	}
 </style>

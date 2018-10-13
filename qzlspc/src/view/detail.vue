@@ -151,7 +151,7 @@ import searchService from "../components/searchService"
 		cursor: pointer;
 	}
 	.detail-message .msg-left .img-wrap li:nth-child(1){
-		margin-left: -40px;
+		/*margin-left: -40px;*/
 	}
 	.detail-message .msg-left .img-wrap li img{
 		width: 100%;

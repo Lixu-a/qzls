@@ -427,7 +427,7 @@ import listItem from "../components/list-item"
 	    cursor: pointer;
 	}
 	.sorting .sorting-list li:nth-child(1){
-		margin-left: -40px;
+		/*margin-left: -40px;*/
 	}
 	.sorting .sorting-list .pricesort{
 		position: relative;

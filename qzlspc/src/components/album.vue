@@ -104,17 +104,17 @@
 	.album-main .album-images{
 		font-size: 0;
 		overflow: auto;
-		margin-left: -20px;
+		/*margin-left: -20px;*/
 	}
 	.album-main .album-images li{
 		float: left;
 		margin-top: 16px;
-		margin-left: 15px;
+		margin-left: 17px;
 		width: 220px;
 		height: 160px;
 	}
 	.album-main .album-images li:nth-child(5n+1){
-		margin-left: 0px;
+		/*margin-left: 0px;*/
 	}
 	.album-main .album-images li img{
 		width: 100%;

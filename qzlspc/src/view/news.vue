@@ -9,6 +9,15 @@
 			<div v-for="(item,index) in dynamic" :key="index">
 				<dynamic :dynamic="item"></dynamic>
 			</div>
+			<div v-if="olddynamic.length"  style="width: 880px;height: 30px;line-height:30px;margin-bottom: 20px;border-radius: 3px;
+	       	color:#FC8C49;text-align:center;">
+		       	<el-pagination
+				  background
+				  @current-change="handleCurrentChange"
+				  layout="prev, pager, next"
+				  :total="olddynamic.length">
+				</el-pagination>
+			</div>
 		</div>
 	</div>
 </template>
@@ -22,6 +31,7 @@ import dynamic from '../components/dynamic'
 				longitude:118.613,//经度
 				latitude:24.88946,//纬度
 				city:'',
+				olddynamic:[],
 				dynamic:[]
 			}
 		},
@@ -80,13 +90,23 @@ import dynamic from '../components/dynamic'
 				    content:'泉州楼市，你的楼市'
 				});
 		  	},
+		  	handleCurrentChange(val) {
+		  		console.log(`当前页: ${val}`);
+				let a = val;
+		        this.dynamic=this.olddynamic.slice(a*10-10,a*10);
+		        // 滚动条滚动
+				this.$nextTick(() => {
+					document.documentElement.scrollTop=580;
+				});
+		  	}
 		  },
 		  mounted() {
 			this.getMyLocation();
 			// document.getElementById("wrap").scrollIntoView();
 			//请求新闻数据
 			this.axios.get("/static/lib/news.json").then(res=>{
-				this.dynamic = Object.assign([],res.data.result);
+				this.olddynamic = Object.assign([],res.data.result);
+				this.dynamic = res.data.result.slice(0,10);
 				this.$store.commit('dynamicTotal',res.data.result);
 			});
 		 }
