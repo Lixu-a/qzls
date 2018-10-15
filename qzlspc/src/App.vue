@@ -101,4 +101,12 @@ export default {
   .user .el-tabs__item{
     font-size: 16px;
   }
+  /*清除elementui默认样式*/
+  .edit-exhi .el-radio__input.is-checked .el-radio__inner {
+    border-color: #FE701A;
+    background: #FE701A;
+  }
+  .edit-exhi .el-radio__input.is-checked+.el-radio__label {
+    color: #FE701A;
+  }
 </style>

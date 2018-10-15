@@ -27,7 +27,7 @@ export default new Router({
     }},
     {path: '/dynamicDetail/:id',component: dynamicDetail,meta:{requireAuth:true}},
     {path: '/login',component: login},
-    {path: '/user',component: user},
+    {path: '/user',component: user,meta:{requireAuth:true}},
   ],
   mode:'history'
 })

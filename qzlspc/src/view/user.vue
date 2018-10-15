@@ -60,7 +60,6 @@
 				    		<div>
 				    			<input @click="checkPass()" type="button" value="确认修改">
 				    		</div>
-				    		{{oldpass}}-{{newpass}}-{{newpass2}}
 					    </div>
 				    </el-tab-pane>
 			  	</el-tabs>
@@ -72,7 +71,16 @@
 				这里是展示区域collection-exhi
 			</div>
 			<div class="edit-exhi" v-show="exhi == 4">
-				这里是展示区域edit-exhi
+				<div class="personalData">
+					<div class="sex">
+						<span>性别：</span>
+						<el-radio v-model="sex" label="男">男</el-radio>
+  						<el-radio v-model="sex" label="女">女</el-radio>
+					</div>
+  					<div class="change">
+		    			<input @click="editFun()" type="button" value="确认修改">
+		    		</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -92,7 +100,9 @@
 				activeName: 'first',
 				oldpass:'',
 				newpass:'',
-				newpass2:''
+				newpass2:'',
+				//个人资料
+				sex: '男'
 			}
 		},
 		methods:{
@@ -195,6 +205,14 @@
 		      			type:'success'
 		      		});
 		      	}
+		      },
+		      //个人资料修改保存
+		      editFun() {
+		      	console.log(this.sex);
+		      	this.$message({
+		      		message:"提交成功",
+		      		type:'success'
+		      	})
 		      }
 		},
 		mounted() {
@@ -363,4 +381,43 @@
 	    height: 178px;
 	    display: block;
 	  }
+	  /*个人资料*/
+	  .edit-exhi{
+
+	  }
+	  .edit-exhi .personalData{
+	  	text-align: left;
+	  	margin-left: 40px;
+	  	margin-top: 30px;
+	  }
+	  .edit-exhi .personalData .sex{
+	  	font-size: 18px;
+    	color: #969696;
+	  }
+	  .edit-exhi .personalData .sex span{
+	  	display: inline-block;
+	  	width: 80px;
+	  	height: 46px;
+	  	line-height: 46px;
+	  }
+	  .edit-exhi .personalData .sex {
+	  	
+	  }
+	  .edit-exhi .personalData .change{
+
+	  }
+	  .edit-exhi .personalData .change input{
+	  	display: inline-block;
+		width: 250px;
+		height: 40px;
+		line-height: 40px;
+		margin-top: 20px;
+		color: rgba(255,255,255,0.9);
+		background-color: #FE701A;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		font-size: 18px;
+	  }
+	  
 </style>
