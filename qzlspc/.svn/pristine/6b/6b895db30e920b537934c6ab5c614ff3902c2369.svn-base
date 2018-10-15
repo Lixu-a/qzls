@@ -37,7 +37,7 @@
 
 <style>
 	.footerNav{
-		padding: 65px 0 45px 0;
+		padding: 65px 0 45px;
 		width: 100%;
 		background-color: #222;
 		/*background-color: #363A3D;*/
@@ -45,7 +45,6 @@
 	.footerWrap{
 		text-align: left;
 		padding-left: 100px;
-		box-sizing:border-box;
 	}
 	.footerWrap .logotitle{
 		display: flex;
