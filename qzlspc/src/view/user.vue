@@ -3,7 +3,7 @@
 		<!-- 左边选项卡 -->
 		<div class="tab">
 			<div class="head" >
-				<img @click="exhiFun($event)" data-exhi="1" :src="imageUrl" alt="">
+				<img @click="exhiFun($event)" data-exhi="1" :src="imggeUrlConfirm" alt="">
 			</div>
 			<div class="nickname">
 				{{nickname}}
@@ -31,12 +31,15 @@
 						  <img v-if="imageUrl" :src="imageUrl" class="avatar">
 						  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
+						<div class="avatar-change">
+			    			<input @click="avatarFun()" type="button" value="确认修改">
+			    		</div>
 				    </el-tab-pane>
 				    <el-tab-pane label="修改昵称" name="second">
 				    	<div class="nick">
 				    		<label>
 				    			 设置昵称：
-				    			<input type="text" ref="nickname">
+				    			<input type="text" ref="nickname" placeholder="请输入您的昵称">
 				    		</label>
 				    		<div>
 				    			<input @click="nickFun()" type="button" value="确认修改">
@@ -47,15 +50,15 @@
 					    <div class="password">
 					    	<label>
 				    			 输入旧密码：
-				    			<input type="text" v-model="oldpass">
+				    			<input type="text" v-model="oldpass" placeholder="请输入旧密码">
 				    		</label>
 				    		<label>
 				    			 设置新密码：
-				    			<input type="password" v-model="newpass">
+				    			<input @blur="checkPass()" type="password" v-model="newpass" placeholder="英文和数字组成的6-10位字符">
 				    		</label>
 				    		<label>
 				    			 确认新密码：
-				    			<input type="password" v-model="newpass2">
+				    			<input @blur="checkPass()" type="password" v-model="newpass2" placeholder="请确认新密码">
 				    		</label>
 				    		<div>
 				    			<input @click="checkPass()" type="button" value="确认修改">
@@ -95,6 +98,7 @@
 				exhi:1,
 				nickname:'我的昵称',
 				//用户头像上传
+				imggeUrlConfirm:'/static/images/default-avatar.png',
 				imageUrl:'/static/images/default-avatar.png',
 				//标签页
 				activeName: 'first',
@@ -136,7 +140,7 @@
 		          this.$message.error('上传头像图片大小不能超过 2MB!');
 		        }
 		        this.$message({
-		          message: '头像上传失败',
+		          message: '请稍等',
 		          type: 'warning'
 		        });
 		        return isJPG && isLt2M;
@@ -144,6 +148,14 @@
 		      // 标签页
 		      handleClick(tab, event) {
 		        console.log(tab, event);
+		      },
+		      //头像修改 
+		      avatarFun() {
+		      	this.imggeUrlConfirm = this.imageUrl;
+		      	this.$message({
+		      		message:"头像上传成功",
+		      		type:"success"
+		      	});
 		      },
 		      //昵称修改
 		      nickFun() {
@@ -172,6 +184,7 @@
 			        });
 			        return
 		      	}
+		      	//判断是否为空
 		      	if (this.newpass == '' || this.newpass == null || this.newpass == undefined) {
 		      		this.$message({
 			          message: '请输入新密码',
@@ -179,6 +192,18 @@
 			        });
 			        return
 		      	}
+		      	//判断密码是否合法
+		      	if (this.newpass) {
+		      		let reg=/^[a-zA-Z0-9]{6,10}$/;
+		      		if(reg.test(this.newpass)==false){
+		      			this.$message({
+		      				message:"密码不能含有非法字符，长度在6-10之间",
+		      				type:'success'
+		      			});
+				    	return;
+					}
+		      	}
+		      	//判断是否为空
 		      	if (this.newpass2 == '' || this.newpass2 == null || this.newpass2 == undefined) {
 		      		this.$message({
 			          message: '请再次输入新密码',
@@ -287,9 +312,27 @@
 		width: 90%;
 		margin: 30px auto;
 	}
+	/*头像修改*/
 	.head-label .avatar-uploader{
 		width: 178px;
 		background-color: rgba(0,0,0,0.05);
+		margin: 0 auto;
+	}
+	.head-label .avatar-change{
+
+	}
+	.head-label .avatar-change input{
+		display: inline-block;
+		width: 178px;
+		height: 40px;
+		line-height: 40px;
+		margin-top: 20px;
+		color: rgba(255,255,255,0.9);
+		background-color: #FE701A;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		font-size: 18px;
 	}
 	/*昵称修改*/
 	.head-label .nick{
