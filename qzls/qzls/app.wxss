@@ -1,6 +1,12 @@
 @import "./common/weui.wxss";
 @import "./components/common.wxss";
 
+/* {
+  "pagePath": "pages/shop/shop",
+  "iconPath": "image/r.png",
+  "selectedIconPath": "image/r1.png",
+  "text": "服务"
+}, */
 view{
     box-sizing:border-box;
 }

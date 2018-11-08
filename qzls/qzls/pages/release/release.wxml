@@ -1,0 +1,74 @@
+<view class="page">
+    <view class="page__bd">
+        <form class="weui-cells weui-cells_after-title" bindsubmit="formSubmit" bindreset="formReset">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">发布人姓名</view>
+                <view class="weui-cell__ft"><input name="name"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">可联系电话</view>
+                <view class="weui-cell__ft"><input name="phone"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">房屋地址</view>
+                <view class="weui-cell__ft"><input name="address"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">房屋所属小区</view>
+                <view class="weui-cell__ft"><input name="village"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">面积</view>
+                <view class="weui-cell__ft"><input name="area"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">总价</view>
+                <view class="weui-cell__ft"><input name="price"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">类型</view>
+                <view class="weui-cell__ft"><input name="house"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">户型</view>
+                <view class="weui-cell__ft"><input name="type"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">楼层</view>
+                <view class="weui-cell__ft"><input name="floor"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">年代</view>
+                <view class="weui-cell__ft"><input name="years"></input></view>
+            </view>
+            <!-- 图片上传 -->
+            <view class="weui-uploader" style='padding:10px 15px;'>
+                <view class="weui-uploader__hd">
+                    <view class="weui-uploader__title">图片上传</view>
+                    <view class="weui-uploader__info">{{files.length}}/2</view>
+                </view>
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{files}}" wx:key="*this">
+                            <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                            </view>
+                        </block>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                </view>
+            </view>
+            <!-- 图片上传结束 -->
+            <view style='padding:10px 15px;'>
+                <view>描述</view>
+                <textarea name="describe" style='border:1px solid rgba(0,0,0,0.1);margin-top:10px;width:100%;line-height:26px;'></textarea>
+            </view>
+            <view class="btn-area">
+              <button formType="submit" type='primary'>提交</button>
+              <button formType="reset">重置</button>
+            </view>
+        </form>
+    </view>
+</view>

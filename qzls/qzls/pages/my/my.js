@@ -33,22 +33,38 @@ Page({
     onShow: function() {
         this.setData({newMsgCount: app.globalData.newMsgCount})
     },
+    onRealname: function(e) {
+      //实名认证
+      wx.navigateTo({
+        url: '/pages/realname/realname'
+      })
+    },
+    onRelease: function(e) {
+      // 发布房源
+      wx.navigateTo({
+        url: '/pages/release/release'
+      })
+    },
     onShareTap: function(e){
+      // 分享
         wx.navigateTo({
             url: '/pages/share/share'
         })
     },
     onWmaCodeTap: function(e){
+      // 小程序码
         wx.navigateTo({
             url: '/pages/wmacode/wmacode'
         })
     },
     onQrCodeTap: function(e){
+      // 二维码
         wx.navigateTo({
             url: '/pages/qrcode/qrcode'
         })
     },
     onClearCache: function(e){
+      // 清除缓存
         app.services.cacheService.initStorage()
         wx.showToast({
             title: "清除成功"
