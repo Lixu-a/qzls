@@ -45,9 +45,65 @@ Page({
       });
       return;
     }
-    if (!msg.num) {
+    if (!msg.phone) {
       wx.showToast({
-        title: '身份证号码不能为空',
+        title: '可联系电话不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.address) {
+      wx.showToast({
+        title: '房屋地址不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.village) {
+      wx.showToast({
+        title: '房屋所属小区不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.area) {
+      wx.showToast({
+        title: '面积不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.price) {
+      wx.showToast({
+        title: '总价不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.house) {
+      wx.showToast({
+        title: '类型不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.type) {
+      wx.showToast({
+        title: '户型不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.floor) {
+      wx.showToast({
+        title: '楼层不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!msg.years) {
+      wx.showToast({
+        title: '年代不能为空',
         icon: 'none'
       });
       return;
