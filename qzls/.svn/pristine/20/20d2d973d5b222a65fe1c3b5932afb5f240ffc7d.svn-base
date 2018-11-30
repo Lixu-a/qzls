@@ -1,0 +1,18 @@
+<view class="page">
+    <view class="page__bd">
+        <form class="weui-cells weui-cells_after-title" bindsubmit="formSubmit" bindreset="formReset">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">真实姓名</view>
+                <view class="weui-cell__ft"><input name="name"></input></view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">身份证号</view>
+                <view class="weui-cell__ft"><input name="num"></input></view>
+            </view>
+            <view class="btn-area">
+              <button formType="submit" type='primary'>提交</button>
+              <button formType="reset">重置</button>
+            </view>
+        </form>
+    </view>
+</view>
