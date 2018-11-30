@@ -103,8 +103,8 @@
 	      	flag:true,//登录注册切换
 	      	//登录账号密码
 	        ruleForm2: {
-	          count2:'',
-	          pass2: ''
+	          count2:'admin',
+	          pass2: 'admin'
 	        },
 	        //登录验证
 	        rules2: {
@@ -251,6 +251,9 @@
 	}
 	.login .toregister{
 		cursor: pointer;
+	}
+	.toregister span{
+		color: blue;
 	}
 	/*注册*/
 </style>

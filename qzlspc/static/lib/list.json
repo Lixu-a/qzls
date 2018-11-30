@@ -208,5 +208,105 @@
             "c": "幸福社区"
         }],
         "price": 1300
+    }, {
+        "id":11,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "五室两厅一卫",
+        "type":"五室",
+        "area":"500",
+        "property":"70年",
+        "build":"2017/05/03",
+        "release":"2018/02/03",
+        "region":"丰泽区",
+        "address": "泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
+    }, {
+        "id":12,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "五室两厅一卫",
+        "type":"五室",
+        "area":"500",
+        "property":"70年",
+        "build":"2017/05/03",
+        "release":"2018/02/03",
+        "region":"丰泽区",
+        "address": "泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
+    }, {
+        "id":13,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "五室两厅一卫",
+        "type":"五室",
+        "area":"500",
+        "property":"70年",
+        "build":"2017/05/03",
+        "release":"2018/02/03",
+        "region":"丰泽区",
+        "address": "泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
+    }, {
+        "id":14,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "五室两厅一卫",
+        "type":"五室",
+        "area":"500",
+        "property":"70年",
+        "build":"2017/05/03",
+        "release":"2018/02/03",
+        "region":"丰泽区",
+        "address": "泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
+    }, {
+        "id":15,
+        "image": "/static/images/house.jpg",
+        "imgList":[{"image":"/static/images/house1.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house2.jpg"},{"image":"/static/images/house3.png"},{"image":"/static/images/house4.jpg"},{"image":"/static/images/house5.jpg"}],
+        "title": "碧桂园楼盘",
+        "phone": 1001010010,
+        "style": "五室两厅一卫",
+        "type":"五室",
+        "area":"500",
+        "property":"70年",
+        "build":"2017/05/03",
+        "release":"2018/02/03",
+        "region":"丰泽区",
+        "address": "泉州万达科技楼旁",
+        "character": [{
+            "c": "海景洋房"
+        }, {
+            "c": "幸福社区"
+        }],
+        "price": 1300
     }]
 }

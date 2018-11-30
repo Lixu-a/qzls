@@ -85,7 +85,7 @@
 		</div>
         <!-- 房子信息列表 -->
         <div class="public-container" style="position:relative;">
-        	<div style="width:880px;" v-for="(item,index) in listItem.slice(0,5)" :key="index">
+        	<div style="width:880px;" v-for="(item,index) in listItem" :key="index">
 	       		<listItem :listItem="item"></listItem>
 	       	</div>
 	       	<!-- 右边推荐列表 -->
@@ -121,7 +121,8 @@
 				  background
 				  @current-change="handleCurrentChange"
 				  layout="prev, pager, next"
-				  :total="oldlistItem.length">
+				  :total="oldlistItem.length"
+				  :current-page.sync="currentPage">
 				</el-pagination>
 			</div>
 	    </div>
@@ -146,6 +147,7 @@ import listItem from "../components/list-item"
 				roomflag:-1,
 				sort:0,
 				pricesortText:"价格排序",
+				currentPage:1,//默认页面
 				citys:[
 					{"city":"惠安市"},
 					{"city":"晋江市"},
@@ -260,6 +262,9 @@ import listItem from "../components/list-item"
 				// this.$nextTick(() => {
 					document.documentElement.scrollTop=380;
 				// });
+				// 排序之后重置页码为1
+				this.handleCurrentChange(1); 
+				this.currentPage = 1;
 			},
 			gtl() {
 				this.sort = 1;
@@ -274,6 +279,9 @@ import listItem from "../components/list-item"
 				this.$nextTick(() => {
 					document.documentElement.scrollTop=380;
 				});
+				// 排序之后重置页码为1
+				this.handleCurrentChange(1);
+				this.currentPage = 1;
 			},
 			// 打印当前页码---分页码
 			handleCurrentChange(val) {

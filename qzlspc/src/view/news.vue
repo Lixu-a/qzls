@@ -93,7 +93,7 @@ import dynamic from '../components/dynamic'
 		  	handleCurrentChange(val) {
 		  		console.log(`当前页: ${val}`);
 				let a = val;
-		        this.dynamic=this.olddynamic.slice(a*10-10,a*10);
+		        this.dynamic=this.olddynamic.slice(a*6-6,a*6);
 		        // 滚动条滚动
 				this.$nextTick(() => {
 					document.documentElement.scrollTop=580;
@@ -106,7 +106,7 @@ import dynamic from '../components/dynamic'
 			//请求新闻数据
 			this.axios.get("/static/lib/news.json").then(res=>{
 				this.olddynamic = Object.assign([],res.data.result);
-				this.dynamic = res.data.result.slice(0,10);
+				this.dynamic = res.data.result.slice(0,6);
 				this.$store.commit('dynamicTotal',res.data.result);
 			});
 		 }
